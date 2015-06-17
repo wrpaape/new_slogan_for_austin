@@ -93,6 +93,7 @@ GEM
       sprockets-rails
     rails-assets-backbone (1.2.1)
       rails-assets-underscore (>= 1.7.0)
+    rails-assets-moment (2.10.3)
     rails-assets-react (0.13.3)
     rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
@@ -161,6 +162,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.1)
   rails-assets-backbone!
+  rails-assets-moment!
   rails-assets-react!
   rails-assets-underscore!
   react-rails
