@@ -11,36 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618204947) do
+ActiveRecord::Schema.define(version: 20150618214253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "likes"
-    t.integer  "hates"
+    t.text     "body",                   null: false
+    t.integer  "rating",     default: 0
     t.integer  "user_id"
     t.integer  "slogan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
+  add_index "comments", ["slogan_id"], name: "index_comments_on_slogan_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "likes",      default: 0
+    t.integer  "hates",      default: 0
+    t.integer  "user_id",                null: false
+    t.integer  "slogan_id"
+    t.integer  "comment_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "rates", ["comment_id"], name: "index_rates_on_comment_id", using: :btree
+  add_index "rates", ["slogan_id"], name: "index_rates_on_slogan_id", using: :btree
+  add_index "rates", ["user_id"], name: "index_rates_on_user_id", using: :btree
+
   create_table "slogans", force: :cascade do |t|
-    t.string   "body"
-    t.integer  "likes"
-    t.integer  "hates"
+    t.string   "body",                       null: false
+    t.integer  "rating",         default: 0
+    t.integer  "comments_count", default: 0
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "password_digest"
-    t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",                        null: false
+    t.string   "email",                       null: false
+    t.string   "password_digest",             null: false
+    t.integer  "slogans_count",   default: 0
+    t.integer  "comments_count",  default: 0
+    t.integer  "rating",          default: 0
+    t.integer  "rating_slogan",   default: 0
+    t.integer  "rating_comment",  default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "comments", "slogans"
+  add_foreign_key "comments", "users"
+  add_foreign_key "rates", "comments"
+  add_foreign_key "rates", "slogans"
+  add_foreign_key "rates", "users"
 end
