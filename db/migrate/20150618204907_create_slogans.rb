@@ -4,7 +4,7 @@ class CreateSlogans < ActiveRecord::Migration
       t.string :body
       t.integer :likes
       t.integer :hates
-      t.user :belongs_to
+      t.belongs_to :user
 
       t.timestamps null: false
     end

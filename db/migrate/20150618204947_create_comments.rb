@@ -4,8 +4,8 @@ class CreateComments < ActiveRecord::Migration
       t.text :body
       t.integer :likes
       t.integer :hates
-      t.user :belongs_to
-      t.slogan :belongs_to
+      t.belongs_to :user
+      t.belongs_to :slogan
 
       t.timestamps null: false
     end
