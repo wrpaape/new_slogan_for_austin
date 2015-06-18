@@ -4,8 +4,8 @@ class Slogan < ActiveRecord::Base
   belongs_to :user
 
   def revise
-    rating = rates.sum("likes - hates")
-    comments_count = comments.count
-    save
+    self.rating = rates.sum("likes - hates")
+    self.comments_count = comments.count
+    self.save
   end
 end

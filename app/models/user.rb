@@ -5,11 +5,11 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def revise
-    rating_slogan = slogans.sum(:rating)
-    rating_comment = comments.sum(:rating)
-    rating = rating_slogan + rating_comment
-    slogans_count = slogans.count
-    comments_count = comments.count
-    save
+    self.rating_slogan = slogans.sum(:rating)
+    self.rating_comment = comments.sum(:rating)
+    self.rating = rating_slogan + rating_comment
+    self.slogans_count = slogans.count
+    self.comments_count = comments.count
+    self.save
   end
 end

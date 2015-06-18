@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :slogan
 
   def revise
-    rating = rates.sum("likes - hates")
-    save
+    self.rating = rates.sum("likes - hates")
+    self.save
   end
 end
