@@ -4,7 +4,7 @@ class CreateSlogans < ActiveRecord::Migration
       t.string :body, null: false
       t.integer :rating, default: 0
       t.integer :comments_count, default: 0
-      t.belongs_to :user
+      t.belongs_to :user, index: true, foreign_key: true, null: false
 
       t.timestamps null: false
     end

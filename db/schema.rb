@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20150618214253) do
   create_table "comments", force: :cascade do |t|
     t.text     "body",                   null: false
     t.integer  "rating",     default: 0
-    t.integer  "user_id"
-    t.integer  "slogan_id"
+    t.integer  "user_id",                null: false
+    t.integer  "slogan_id",              null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -46,10 +46,12 @@ ActiveRecord::Schema.define(version: 20150618214253) do
     t.string   "body",                       null: false
     t.integer  "rating",         default: 0
     t.integer  "comments_count", default: 0
-    t.integer  "user_id"
+    t.integer  "user_id",                    null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  add_index "slogans", ["user_id"], name: "index_slogans_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                        null: false
@@ -69,4 +71,5 @@ ActiveRecord::Schema.define(version: 20150618214253) do
   add_foreign_key "rates", "comments"
   add_foreign_key "rates", "slogans"
   add_foreign_key "rates", "users"
+  add_foreign_key "slogans", "users"
 end
