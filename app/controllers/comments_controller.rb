@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :slogan_id, :body)
+    params.permit(:user_id, :slogan_id, :body)
   end
 
   def render_response(response, response_code)
