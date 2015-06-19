@@ -9,16 +9,11 @@ class RatesController < ApplicationController
     if @current_user
       if rate = Rate.find_by(rate_params.reject { |k| k == :likes || k == :hates })
         rate.update(likes: rate_params[:likes], hates: rate_params[:hates])
-        @current_user.revise
+        rate.revise
       else
         rate = Rate.create(rate_params)
-        @current_user.revise
-         if slogan = rate_params[:slogan_id]
-
-         else
-
-         end
       end
+      rate.revise
     else
       authenticate_user!
     end
