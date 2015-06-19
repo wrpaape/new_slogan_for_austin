@@ -1,4 +1,4 @@
-var UserModel = React.createClass({
+var SloganModel = React.createClass({
 	render: function(){
 		return(
 

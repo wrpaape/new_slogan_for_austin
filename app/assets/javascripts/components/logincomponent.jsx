@@ -1,7 +1,6 @@
-var React = require("react");
-var LoginModel = require("../models/UserModel.js");
 
-module.exports = React.createClass({
+
+var UserModel = React.createClass({
 	render: function(){
 		return(
 
