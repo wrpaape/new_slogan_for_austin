@@ -22,11 +22,11 @@ var app = new App();
 Backbone.history.start();
 app.navigate('home');
 var keith = new UserModel({
-      
+
         name: "keithistheman",
         email: "keith@keith.com",
         password:"opensesame"
-        
+
 });
 console.log(keith);
 var keithlist = new UserCollection();
