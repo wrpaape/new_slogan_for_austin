@@ -1,9 +1,5 @@
-//for components we need React to build
-var React = require("react");
-// var Categories = require ("./categoriescomponent");
+//NEED VAR MODEL HERE = React.createClass({ //react uses createclass instead of collection/model.extend
 
-module.exports = React.createClass({ //react uses createclass instead of collection/model.extend
-//every component needs a render method
 	render: function() {
 		return (
 		<div className="container">
@@ -19,7 +15,7 @@ module.exports = React.createClass({ //react uses createclass instead of collect
 					stuff
 				</div>
 			</div>
-		</div>
+		</div> 
 
 		);
 	}

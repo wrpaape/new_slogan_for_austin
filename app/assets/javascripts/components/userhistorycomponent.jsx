@@ -1,6 +1,4 @@
-var React = require('react');
-
-module.exports = React.createClass ({
+var UserModel = React.createClass ({
     render: function() {
         return(
             <h1>User history</h1>
