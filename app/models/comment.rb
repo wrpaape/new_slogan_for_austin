@@ -2,13 +2,16 @@ class Comment < ActiveRecord::Base
   has_many :rates
   belongs_to :user
   belongs_to :slogan
+  after_create :revise
 
-  def revise(rate)
-    self.rating += rate.likes - rate.hates
-    self.save
-    user = self.user
-    user.rating_comment += rate.likes - rate.hates
-    user.rating += rate.likes - rate.hates
+  private
+
+  def revise
+    user = User.find(user_id)
+    slogan = Slogan.find(slogan_id)
+    user.comments_count += 1
     user.save
+    slogan.comments_count += 1
+    slogan.save
   end
 end

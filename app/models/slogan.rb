@@ -2,13 +2,13 @@ class Slogan < ActiveRecord::Base
   has_many :comments
   has_many :rates
   belongs_to :user
+  after_create :revise
 
-  def revise(rate)
-    self.rating += rate.likes - rate.hates
-    self.save
-    user = self.user
-    user.rating_slogan += rate.likes - rate.hates
-    user.rating += rate.likes - rate.hates
+  private
+
+  def revise
+    user = User.find(user_id)
+    user.slogans_count += 1
     user.save
   end
 end

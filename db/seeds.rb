@@ -19,8 +19,6 @@ initial_slogan_count.times do
   user = all_users.sample
   Slogan.create(body: Faker::Lorem.sentence,
               user_id: user.id)
-  user.slogans_count += 1
-  user.save
 end
 
 all_slogans = Slogan.all
@@ -30,10 +28,6 @@ initial_comments_count.times do
   Comment.create(body: Faker::Lorem.paragraph,
                  user_id: user.id,
                  slogan_id: slogan.id)
-  user.comments_count += 1
-  user.save
-  slogan.comments_count += 1
-  slogan.save
 end
 
 all_slogans.each do |slogan|
@@ -44,14 +38,12 @@ all_slogans.each do |slogan|
       user_rate = possible_rates.reject { |elem| elem == user_rate }.first
       rate.update(likes: user_rate[:likes],
                   hates: user_rate[:hates])
-      slogan.revise(rate)
     else
       rate = Rate.create(slogan_id: slogan.id,
                          user_id: user.id,
                          likes: user_rate[:likes],
                          hates: user_rate[:hates])
     end
-    slogan.revise(rate)
   end
 end
 
@@ -64,13 +56,11 @@ all_comments.each do |comment|
       user_rate = possible_rates.reject { |elem| elem == user_rate }.first
       rate.update(likes: user_rate[:likes],
                   hates: user_rate[:hates])
-      comment.revise(rate)
     else
       rate = Rate.create(comment_id: comment.id,
                          user_id: user.id,
                          likes: user_rate[:likes],
                          hates: user_rate[:hates])
     end
-    comment.revise(rate)
   end
 end
