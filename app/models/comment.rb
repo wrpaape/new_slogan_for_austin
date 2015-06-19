@@ -3,8 +3,12 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :slogan
 
-  def revise
-    self.rating = rates.sum("likes - hates")
+  def revise(rate)
+    self.rating += rate.likes - rate.hates
     self.save
+    user = self.user
+    user.rating_comment += rate.likes - rate.hates
+    user.rating += rate.likes - rate.hates
+    user.save
   end
 end

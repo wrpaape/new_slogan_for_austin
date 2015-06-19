@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   def new
     authenticate_user!
     @comment = Comment.new
-    @slogan = Slogan.find(params[:format])
   end
 
   def create

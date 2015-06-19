@@ -3,9 +3,12 @@ class Slogan < ActiveRecord::Base
   has_many :rates
   belongs_to :user
 
-  def revise
-    self.rating = rates.sum("likes - hates")
-    self.comments_count = comments.count
+  def revise(rate)
+    self.rating += rate.likes - rate.hates
     self.save
+    user = self.user
+    user.rating_slogan += rate.likes - rate.hates
+    user.rating += rate.likes - rate.hates
+    user.save
   end
 end

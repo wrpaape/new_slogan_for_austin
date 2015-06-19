@@ -16,15 +16,24 @@ initial_userbase += 1
 
 all_users = User.all
 initial_slogan_count.times do
+  user = all_users.sample
   Slogan.create(body: Faker::Lorem.sentence,
-              user_id: all_users.sample.id)
+              user_id: user.id)
+  user.slogans_count += 1
+  user.save
 end
 
 all_slogans = Slogan.all
 initial_comments_count.times do
+  user = all_users.sample
+  slogan = all_slogans.sample
   Comment.create(body: Faker::Lorem.paragraph,
-                 user_id: all_users.sample.id,
-                 slogan_id: all_slogans.sample.id)
+                 user_id: user.id,
+                 slogan_id: slogan.id)
+  user.comments_count += 1
+  user.save
+  slogan.comments_count += 1
+  slogan.save
 end
 
 all_slogans.each do |slogan|
@@ -33,18 +42,16 @@ all_slogans.each do |slogan|
     user_rate = possible_rates.sample
     if rate = Rate.find_by(user_id: user.id, slogan_id: slogan.id, likes: user_rate[:likes], hates: user_rate[:hates])
       user_rate = possible_rates.reject { |elem| elem == user_rate }.first
-      rate.update(slogan_id: slogan.id,
-                  user_id: user.id,
-                  likes: user_rate[:likes],
+      rate.update(likes: user_rate[:likes],
                   hates: user_rate[:hates])
+      slogan.revise(rate)
     else
-      Rate.create(slogan_id: slogan.id,
-                  user_id: user.id,
-                  likes: user_rate[:likes],
-                  hates: user_rate[:hates])
+      rate = Rate.create(slogan_id: slogan.id,
+                         user_id: user.id,
+                         likes: user_rate[:likes],
+                         hates: user_rate[:hates])
     end
-    slogan.revise
-    user.revise
+    slogan.revise(rate)
   end
 end
 
@@ -55,17 +62,15 @@ all_comments.each do |comment|
     user_rate = possible_rates.sample
     if rate = Rate.find_by(user_id: user.id, comment_id: comment.id, likes: user_rate[:likes], hates: user_rate[:hates])
       user_rate = possible_rates.reject { |elem| elem == user_rate }.first
-      rate.update(comment_id: comment.id,
-                  user_id: user.id,
-                  likes: user_rate[:likes],
+      rate.update(likes: user_rate[:likes],
                   hates: user_rate[:hates])
+      comment.revise(rate)
     else
-      Rate.create(comment_id: comment.id,
-                  user_id: user.id,
-                  likes: user_rate[:likes],
-                  hates: user_rate[:hates])
+      rate = Rate.create(comment_id: comment.id,
+                         user_id: user.id,
+                         likes: user_rate[:likes],
+                         hates: user_rate[:hates])
     end
-    comment.revise
-    user.revise
+    comment.revise(rate)
   end
 end
