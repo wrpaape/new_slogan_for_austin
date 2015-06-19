@@ -28,6 +28,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-react'
   gem 'rails-assets-moment'
   gem 'rails-assets-bootstrap'
+  gem 'rails-assets-sweetalert'
  
 end
 
