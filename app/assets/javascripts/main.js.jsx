@@ -28,9 +28,10 @@ var keith = new UserModel({
         password:"opensesame"
         
 });
-
+console.log(keith);
 var keithlist = new UserCollection();
 keith.save();
 keithlist.add(keith);
 keithlist.fetch();
+console.log(keithlist);
 // $('#container').html(keithlist);
