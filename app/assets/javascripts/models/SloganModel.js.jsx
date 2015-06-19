@@ -8,7 +8,7 @@ SloganModel = Backbone.Model.extend({
 		user_id: null,
 
 	},
-	urlRoot: 'localhost:3000/slogans',
+	urlRoot: 'http://localhost:3000/slogans',
 	idAttribute: 'id'
 });
 	

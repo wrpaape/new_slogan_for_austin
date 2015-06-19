@@ -16,7 +16,7 @@ UserModel = Backbone.Model.extend({
 		updated_at:null,
 
 	},
-	urlRoot: 'localhost:3000/users',
+	urlRoot: 'http://localhost:3000/users',
 	idAttribute: 'id'
 });
 	

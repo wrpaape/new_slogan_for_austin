@@ -1,4 +1,4 @@
 RateCollection = Backbone.Collection.extend({
 	model: RateModel,
-	url: 'localhost:3000/rates'
+	url: 'http://localhost:3000/rates'
 });
