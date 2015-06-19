@@ -92,7 +92,7 @@ class SlogansController < ApplicationController
   private
 
   def slogan_params
-    params.require(:slogan).permit(:user_id, :body)
+    params.permit(:user_id, :body)
   end
 
   def render_response(response, response_code)

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :current_user
+  skip_before_action :verify_authenticity_token
 
   def current_user
     if @current_user.nil?
