@@ -24,22 +24,22 @@ class UsersController < ApplicationController
 
   def create
     begin
-      if User.find_by(name: user_params[:name]) && User.find_by(email: user_params[:email])
-        render_response("username and email is already taken", 500)
-      elsif User.find_by(name: user_params[:name])
-        render_response("username is already taken", 500)
-      elsif User.find_by(email: user_params[:email])
-        render_response("email is already taken", 500)
-      elsif user_params[:password] != user_params[:password_confirmation]
-        render_response("passwords do not match", 500)
-      else
+      # if User.find_by(name: user_params[:name]) && User.find_by(email: user_params[:email])
+      #   render_response("username and email is already taken", 500)
+      # elsif User.find_by(name: user_params[:name])
+      #   render_response("username is already taken", 500)
+      # elsif User.find_by(email: user_params[:email])
+      #   render_response("email is already taken", 500)
+      # elsif user_params[:password] != user_params[:password_confirmation]
+      #   render_response("passwords do not match", 500)
+      # else
         user = User.new(user_params)
         if user.save
           render_response(user, 200)
         else
           render_response("errors occurred", 500)
         end
-      end
+      # end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :avatar, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def render_response(response, response_code)
