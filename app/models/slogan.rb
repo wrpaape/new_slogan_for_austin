@@ -4,6 +4,14 @@ class Slogan < ActiveRecord::Base
   belongs_to :user
   after_create :revise
 
+  def trend
+    phrase = "dench"
+    start = 1990
+    last = 2008
+
+    `python #{Rails.root.join('lib', 'assets', 'ngram.py')} #{phrase} #{start} #{last} 2>&1`
+  end
+
   private
 
   def revise
@@ -11,4 +19,6 @@ class Slogan < ActiveRecord::Base
     user.slogans_count += 1
     user.save
   end
+
+
 end
