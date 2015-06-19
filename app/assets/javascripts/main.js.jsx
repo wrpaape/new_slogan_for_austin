@@ -22,17 +22,11 @@ var app = new App();
 Backbone.history.start();
 app.navigate('home');
 var keith = new UserModel({
-        id: '',
+      
         name: "keithistheman",
         email: "keith@keith.com",
-        password:"opensesame",
-        slogans_count: null,
-        comments_count: null,
-        rating: null,
-        rating_slogan: null,
-        rating_comment: null,
-        created_at: null,
-        updated_at:null,
+        password:"opensesame"
+        
 });
 
 var keithlist = new UserCollection();
