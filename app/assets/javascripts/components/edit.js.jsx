@@ -7,7 +7,7 @@ var Edit = React.createClass({
     return (
       <div>
         <h1>Edit Profile</h1>
-        <button onClick={this.clickHandler}>Cancel</button>
+        //<button onClick={this.clickHandler}>Cancel</button>
       </div>
     );
   }

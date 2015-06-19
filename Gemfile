@@ -27,6 +27,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-backbone'
   gem 'rails-assets-react'
   gem 'rails-assets-moment'
+  gem 'rails-assets-bootstrap'
+ 
 end
 
 group :production do
