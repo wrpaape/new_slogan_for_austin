@@ -17,7 +17,7 @@ initial_userbase += 1
 all_users = User.all
 initial_slogan_count.times do
   user = all_users.sample
-  Slogan.create(body: Faker::Lorem.sentence,
+  Slogan.create(body: LiterateRandomizer.sentence,
               user_id: user.id)
 end
 

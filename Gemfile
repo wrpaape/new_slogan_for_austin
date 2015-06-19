@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'react-rails'
 gem 'faker'
+gem 'literate_randomizer'
 
 
 group :development, :test do
