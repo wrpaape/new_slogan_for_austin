@@ -10,6 +10,28 @@ class CommentsController < ApplicationController
     end
   end
 
+  def most_liked
+    begin
+      @comments = Comment.order(likes: :desc)
+      render_response(@comments, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
+  def most_hated
+    begin
+      @comments = Comment.order(hates: :desc)
+      render_response(@comments, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
   def new
     begin
       authenticate_user!

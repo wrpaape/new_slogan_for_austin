@@ -13,6 +13,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'react-rails'
 gem 'faker'
+gem 'literate_randomizer'
+# first need to:
+# $ brew install imagemagick
+# $ brew install gs
+gem 'rmagick'
+gem 'gruff'
 
 
 group :development, :test do
@@ -29,7 +35,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-moment'
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-sweetalert'
- 
+
 end
 
 group :production do
