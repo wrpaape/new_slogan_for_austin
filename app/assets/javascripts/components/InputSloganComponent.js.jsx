@@ -8,3 +8,5 @@ var InputSlogan = React.createClass({
         );
     }
 });
+
+//kristen did it

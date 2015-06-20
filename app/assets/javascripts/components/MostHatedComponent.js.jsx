@@ -14,7 +14,7 @@ var MostHated = React.createClass({
 			if(hatey===null){
 				console.log("most hated is null");}
 			else{for(var i=0;i<hatey.length;i++){
-				$('#most-hated-list').append(hatey[i]+"<br/>");
+				$('#most-hated-list').append("<div ref ='" + hatey[i].id + "'>" + hatey[i] +"<br/></div>");
 				}	
 			};
 		});

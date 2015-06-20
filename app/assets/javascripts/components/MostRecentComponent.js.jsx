@@ -16,7 +16,7 @@ var MostRecent = React.createClass({
 				console.log("recent is null");
 			}
 			else{for(var i=0;i<recent.length;i++){
-				$('#most-recent-list').append(recent[i]+"<br/>");
+				$('#most-recent-list').append("<div ref ='" + recent[i].id + "'>" + recent[i] +"<br/></div>");
 				}
 			};
 		});
