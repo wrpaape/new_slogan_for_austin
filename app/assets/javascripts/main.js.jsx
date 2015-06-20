@@ -11,9 +11,11 @@ var App = Backbone.Router.extend({
         $('#container').html('');
         React.render(<HomePage/>, document.querySelector('#container'));
     },
+
     sloganpage: function(slogan){
         $('#container').html('');
       React.render(<SloganPage/>, document.querySelector('#container'));
+
     },
     userpage:function(user){
         $('#container').html('');
@@ -29,6 +31,7 @@ var App = Backbone.Router.extend({
     }
 
 });
+
 
 var app = new App();
 Backbone.history.start();
