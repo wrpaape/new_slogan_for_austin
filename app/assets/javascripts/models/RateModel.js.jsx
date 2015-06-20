@@ -1,4 +1,4 @@
-RateModel = Backbone.Model.extend({
+var RateModel = Backbone.Model.extend({
 	defaults: {
 		likes: null,
 		hates: null,

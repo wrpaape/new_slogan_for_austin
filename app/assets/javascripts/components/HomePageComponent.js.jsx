@@ -5,8 +5,8 @@ var HomePage = React.createClass({
           <NavComponent/><br/>
           <MainTitle/><br/>
             <h1> Home Page </h1>
-            <BigSlogan/><br>/
-            <a href='#slogan/3'>Edit</a><br/>
+            <BigSlogan/><br/>
+            <a href='#slogan/3'>randomsloganlink</a><br/>
             <MostLiked/><br/>
             <MostHated/><br/>
             <MostRecent/><br/>

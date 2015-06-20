@@ -1,21 +1,18 @@
-var Login = React.createClass({
+var Register = React.createClass({
     render: function () {
         return (
           <div>
-            
-          	
           	<NavComponent/>
           	<MainTitle/>
-           	<h1> Login </h1>
-           	<form id="login-form">
-           		<input id="login-name"/>
-           		<input id="login-password"/>
+           	<h1> Register </h1>
+           	<form id="register-form">
+           		<input id="register-name"/>
+           		<input id="register-password"/>
            		<button type="submit">
            			Submit
            		</button>
            	</form>
            
-     
           </div>
         );
     }

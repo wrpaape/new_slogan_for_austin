@@ -1,5 +1,5 @@
 
-LoggedInModel = Backbone.Model.extend({
+var LoggedInModel = Backbone.Model.extend({
 	defaults: {
 		
 		name: "keithreynolds",
