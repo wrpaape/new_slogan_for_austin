@@ -1,7 +1,7 @@
 CommentModel = Backbone.Model.extend({
 	defaults: {
 		body: null,
-		rating: null,
+		// rating: null,
 		created_at: null,
 		updated_at: null,
 		user_id: null,
