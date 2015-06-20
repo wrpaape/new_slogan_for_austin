@@ -14,6 +14,9 @@ gem 'puma'
 gem 'react-rails'
 gem 'faker'
 gem 'literate_randomizer'
+# first need to:
+# $ brew install imagemagick
+# $ brew install gs
 gem 'rmagick'
 gem 'gruff'
 

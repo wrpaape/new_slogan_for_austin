@@ -62,10 +62,16 @@ class Slogan < ActiveRecord::Base
   end
 
   def plot
+    series = []
+    self.trend_coeffs.split("||").each { |point| series << point.to_f }
     g = Gruff::Line.new
-    g.title = "Phrase Trendiness"
-    g.data 'Year', (2000...2008).to_a
-    g.data 'Trend Index', self.trend_coeffs.split("||")
-    g.write("#{Rails.root.join('app', 'assets', 'images', "#{self.id}")}.png")
+    g.title = "Slogan Trend Behavior"
+    g.theme_37signals
+    g.y_axis_label = "Trend Index"
+    g.labels = { 0 => '2000', 1 => '2001', 2 => '2002', 3 => '2003', 4 => '2004',
+             5 => '2005', 6 => '2006', 7 => '2007' }
+    # g.data 'Year', (2000...2008).to_a
+    g.data self.body, series
+    g.write("#{Rails.root.join('app', 'assets', 'images', "slogan#{self.id}")}.png")
   end
 end
