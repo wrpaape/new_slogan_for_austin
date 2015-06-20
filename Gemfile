@@ -14,6 +14,8 @@ gem 'puma'
 gem 'react-rails'
 gem 'faker'
 gem 'literate_randomizer'
+gem 'rmagick'
+gem 'gruff'
 
 
 group :development, :test do
@@ -30,7 +32,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-moment'
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-sweetalert'
- 
+
 end
 
 group :production do

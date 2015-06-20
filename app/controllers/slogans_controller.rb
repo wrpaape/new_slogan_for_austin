@@ -48,6 +48,8 @@ class SlogansController < ApplicationController
   def create
     begin
       authenticate_user!
+      slogan_params[:user_id] = slogan_params[:user_id].to_i
+      100.times { puts slogan_params.inspect }
       @slogan = Slogan.create(slogan_params)
       if @slogan.save
         render_response(@slogan, 200)

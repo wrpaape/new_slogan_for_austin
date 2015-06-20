@@ -56,5 +56,6 @@ class NgramScraper(object):
 newngram = NgramScraper()
 resp = NgramScraper.query(newngram, sys.argv[1])
 series = resp['timeseries']
-array = list(xrange(len(series)))
-print numpy.mean(series), stats.linregress(array, series)[0]
+# array = list(xrange(len(series)))
+# print numpy.mean(series), stats.linregress(array, series)[0]
+print numpy.mean(series), '||', series
