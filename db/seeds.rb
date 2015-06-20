@@ -1,12 +1,12 @@
 initial_userbase = 100
-initial_slogan_count = 20
+initial_slogan_count = 5
 initial_comments_count = 200
 possible_rates = [{likes: 1, hates: 0}] * 5 + [{likes: 0, hates: 1}]
 
 initial_userbase.times do
   User.create(name: Faker::Name.name,
               email: Faker::Internet.email,
-              password_digest: BCrypt::Password.create(Faker::Internet.password))
+              password_digest: BCryp t::Password.create(Faker::Internet.password))
 end
 
 User.create(name: "admin",

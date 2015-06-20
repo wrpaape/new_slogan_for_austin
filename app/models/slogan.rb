@@ -18,9 +18,12 @@ class Slogan < ActiveRecord::Base
     phrase = body.split(" ")
     start = 2000
     last = 2008
+    relevancies = []
     slopes = []
     phrase.each do |word|
-      slopes << `python #{Rails.root.join('lib', 'assets', 'ngram.py')} #{word} #{start} #{last} 2>&1`.chomp.to_f
+      rel, slope = `python #{Rails.root.join('lib', 'assets', 'ngram.py')} #{word} #{start} #{last} 2>&1`.chomp.split(' ')
+      relevancies << rel.to_f
+      slopes << slopes.to_f
     end
     avg_slope = slopes.inject{ |sum, el| sum + el } / slopes.size
     self.trend_coeff = avg_slope

@@ -57,4 +57,4 @@ newngram = NgramScraper()
 resp = NgramScraper.query(newngram, sys.argv[1])
 series = resp['timeseries']
 array = list(xrange(len(series)))
-print stats.linregress(array, series)[1]
+print numpy.mean(series), stats.linregress(array, series)[0]
