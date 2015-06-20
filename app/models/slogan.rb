@@ -23,7 +23,12 @@ class Slogan < ActiveRecord::Base
     phrase.each do |word|
       rel, slope = `python #{Rails.root.join('lib', 'assets', 'ngram.py')} #{word} #{start} #{last} 2>&1`.chomp.split(' ')
       relevancies << rel.to_f
-      slopes << slopes.to_f
+      if rel.to_f > 0.001
+        slopes << 0.0
+        puts "rejected!"
+      else
+        slopes << slope.to_f
+      end
     end
     avg_slope = slopes.inject{ |sum, el| sum + el } / slopes.size
     self.trend_coeff = avg_slope
