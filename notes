@@ -7,3 +7,15 @@ sloganfocus component
 userhistory component
 
 do all css styling in assets/javascripts/stylesheets/application.css
+
+enter slogan function -- done
+login function
+logout function
+register function
+add comment function
+like button function
+hate button function
+
+
+watch for change in collection
+update corresponding 
