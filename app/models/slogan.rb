@@ -25,7 +25,6 @@ class Slogan < ActiveRecord::Base
       relevancies << rel.to_f
       if rel.to_f > 0.001
         slopes << 0.0
-        puts "rejected!"
       else
         slopes << slope.to_f
       end
