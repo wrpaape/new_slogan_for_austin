@@ -15,7 +15,7 @@ class Slogan < ActiveRecord::Base
   end
 
   def trend
-    phrase = body.split(" ")
+    phrase = body.gsub(/[^a-z0-9\s]/i, ' ').split(" ")
     start = 2000
     last = 2008
     relevancies = []
