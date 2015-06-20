@@ -20,6 +20,7 @@ class Slogan < ActiveRecord::Base
     rel_words = {}
     phrase.each do |word|
       rel, series = `python #{Rails.root.join('lib', 'assets', 'ngram.py')} #{word} #{start} #{last} 2>&1`.chomp.split('||')
+      next if series.nil?
       unless rel.to_f > 0.001
         series = series[2...-1].split(", ")
         series.map! { |point| point.to_f }
@@ -69,7 +70,8 @@ class Slogan < ActiveRecord::Base
     # g.theme_37signals
     g.theme_rails_keynote
     g.y_axis_label = "Trend Index"
-    g.y_axis_increment = ((series.max - series.min) / 5).ceil
+    inc = ((series.max - series.min) / 5).ceil
+    inc.zero? ? g.y_axis_increment = 10 : g.y_axis_increment = inc
     g.labels = { 0 => '2000', 1 => '2001', 2 => '2002', 3 => '2003', 4 => '2004',
              5 => '2005', 6 => '2006', 7 => '2007' }
     g.data " ", series
