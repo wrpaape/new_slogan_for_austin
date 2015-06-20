@@ -1,4 +1,3 @@
- 
 var UserModel = React.createClass ({
     render: function() {
         return(
@@ -6,3 +5,4 @@ var UserModel = React.createClass ({
         );
     }
 });
+

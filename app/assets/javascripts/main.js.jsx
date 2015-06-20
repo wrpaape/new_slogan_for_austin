@@ -18,7 +18,11 @@ var App = Backbone.Router.extend({
     },
     userpage:function(user){
         React.render(<Profile/>, document.querySelector('#container'));
-    }
+        var user = new UserModel();
+        users.fetch({success: function() {
+            React.render(<userhistorycomponent user={user}/>, document.querySelector("#container"));
+        }})
+    },
 
 });
 

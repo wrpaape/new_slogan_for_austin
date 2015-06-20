@@ -5,3 +5,5 @@ inputnewslogan component
 maindisplay component
 sloganfocus component
 userhistory component
+
+do all css styling in assets/javascripts/stylesheets/application.css

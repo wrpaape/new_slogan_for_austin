@@ -1,9 +1,10 @@
 SloganModel = Backbone.Model.extend({
 	defaults: {
 		body: null,
-		numLikes:
-		numHates:
-		//calculate overall rating by adding together
+		// numLikes: 0,
+		// numHates: 0,
+		//calculate rating by adding these two 
+		rating: null,
 		comments_count: null,
 		created_at: null,
 		updated_at: null,
