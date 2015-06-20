@@ -4,8 +4,6 @@ class Slogan < ActiveRecord::Base
   belongs_to :user
   after_create :revise, :trend
 
-
-
   private
 
   def revise

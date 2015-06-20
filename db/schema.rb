@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20150620002231) do
   create_table "comments", force: :cascade do |t|
     t.text     "body",                   null: false
     t.integer  "rating",     default: 0
+    t.integer  "likes",      default: 0
+    t.integer  "hates",      default: 0
     t.integer  "user_id",                null: false
     t.integer  "slogan_id",              null: false
     t.datetime "created_at",             null: false
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(version: 20150620002231) do
   create_table "slogans", force: :cascade do |t|
     t.string   "body",                         null: false
     t.integer  "rating",         default: 0
+    t.integer  "likes",          default: 0
+    t.integer  "hates",          default: 0
     t.integer  "comments_count", default: 0
     t.float    "trend_coeff",    default: 0.0
     t.integer  "user_id",                      null: false
@@ -63,6 +67,12 @@ ActiveRecord::Schema.define(version: 20150620002231) do
     t.integer  "rating",          default: 0
     t.integer  "rating_slogan",   default: 0
     t.integer  "rating_comment",  default: 0
+    t.integer  "likes",           default: 0
+    t.integer  "likes_slogan",    default: 0
+    t.integer  "likes_comment",   default: 0
+    t.integer  "hates",           default: 0
+    t.integer  "hates_slogan",    default: 0
+    t.integer  "hates_comment",   default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
