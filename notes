@@ -4,6 +4,7 @@ register component
 inputnewslogan component
 maindisplay component
 sloganfocus component
+<<<<<<< HEAD
 userhistory component
 
 do all css styling in assets/javascripts/stylesheets/application.css
@@ -19,3 +20,6 @@ hate button function
 
 watch for change in collection
 update corresponding 
+=======
+userhistory component
+>>>>>>> 195ce8e8040ed093212dbf129b5d64de91818178

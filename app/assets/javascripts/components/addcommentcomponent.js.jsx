@@ -1,3 +1,4 @@
+//should be done
 var AddComment = React.createClass({
     render: function () {
         return (
@@ -15,10 +16,5 @@ var AddComment = React.createClass({
    			})
     	}
     }
-
-
-    
-
-   
 
 });

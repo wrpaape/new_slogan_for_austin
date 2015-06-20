@@ -36,7 +36,10 @@ class RatesController < ApplicationController
       render :back
     end
   end
+
+  private
+
   def rate_params
-    params.require(:rate).permit(:user_id, :slogan_id, :comment_id, :likes, :hates)
+    params.permit(:user_id, :slogan_id, :comment_id, :likes, :hates)
   end
 end

@@ -1,4 +1,4 @@
 SloganCollection = Backbone.Collection.extend({
 	model: SloganModel,
-	url: 'localhost:3000/slogans'
+	url: 'http://localhost:3000/slogans'
 });
