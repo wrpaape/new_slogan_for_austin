@@ -65,14 +65,15 @@ class Slogan < ActiveRecord::Base
     series = []
     self.trend_coeffs.split("||").each { |point| series << point.to_f }
     g = Gruff::Bar.new
-    g.title = "Slogan Trend Behavior"
-    g.theme_37signals
+    g.title = self.body
+    # g.theme_37signals
+    g.theme_rails_keynote
     g.y_axis_label = "Trend Index"
-    g.y_axis_increment = 10
+    g.y_axis_increment = ((series.max - series.min) / 5).ceil
     g.labels = { 0 => '2000', 1 => '2001', 2 => '2002', 3 => '2003', 4 => '2004',
              5 => '2005', 6 => '2006', 7 => '2007' }
-    # g.data 'Year', (2000...2008).to_a
-    g.data self.body, series
+    g.data " ", series
+    g.hide_legend = true
     g.write("#{Rails.root.join('app', 'assets', 'images', "slogan#{self.id}")}.png")
   end
 end
