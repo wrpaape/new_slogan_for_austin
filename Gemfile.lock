@@ -110,6 +110,7 @@ GEM
     rails-assets-jquery (2.1.4)
     rails-assets-moment (2.10.3)
     rails-assets-react (0.13.3)
+    rails-assets-sweetalert (1.0.1)
     rails-assets-underscore (1.8.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -189,6 +190,7 @@ DEPENDENCIES
   rails-assets-bootstrap!
   rails-assets-moment!
   rails-assets-react!
+  rails-assets-sweetalert!
   rails-assets-underscore!
   rails_12factor
   react-rails

@@ -11,12 +11,17 @@ var App = Backbone.Router.extend({
     },
     sloganpage: function(slogan) {
       React.render(<Edit/>, document.querySelector('#container'));
+        var slogans = new SloganCollection();
+        slogans.fetch({success: function(){
+            React.render(<ListingComponent slogans={slogans}/>, document.querySelector("#container"));
+        }})
     },
     userpage:function(user){
         React.render(<Profile/>, document.querySelector('#container'));
     }
 
 });
+
 
 var app = new App();
 Backbone.history.start();
