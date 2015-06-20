@@ -35,6 +35,7 @@ class NgramScraper(object):
         url = url + '&year_start=' + str(self._year_start)
         url = url + '&year_end=' + str(self._year_end)
         url = url + '&direct_url=' + urllib.quote_plus('t1;,' + ngram + ';,c0')
+        url = url + '&smoothing=0'
 
         conn = httplib.HTTPSConnection('books.google.com')
         conn.request('GET', url)
