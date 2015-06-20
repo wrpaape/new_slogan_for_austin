@@ -4,16 +4,24 @@ var App = Backbone.Router.extend({
         '': 'home',
         'home': 'home',
         'sloganpage/:slogan': 'sloganpage',
-        'userpage/:user': 'user'
+        'userpage/:user': 'user',
+        'register':'register',
+        'login':'login'
     },
     home: function() {
-      React.render(<Profile/>, document.querySelector('#container'));
+      React.render(<HomePage/>, document.querySelector('#container'));
     },
     sloganpage: function(slogan) {
-      React.render(<Edit/>, document.querySelector('#container'));
+      React.render(<SloganPage/>, document.querySelector('#container'));
     },
     userpage:function(user){
-        React.render(<Profile/>, document.querySelector('#container'));
+        React.render(<UserPage/>, document.querySelector('#container'));
+    },
+    register:function(){
+        React.render(<Register/>, document.querySelector('#container'));
+    },
+    login:function(){
+        React.render(<Login/>, document.querySelector('#container'));
     }
 
 });
