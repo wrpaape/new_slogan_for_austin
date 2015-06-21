@@ -3,7 +3,7 @@ var LikeButton = React.createClass({
     render: function () {
         return (
           
-          	<button className="like" onclick={this.addLike}>LIKE 
+          	<button className="like" onClick={this.addLike}>LIKE 
           	</button>
           
           
@@ -11,8 +11,12 @@ var LikeButton = React.createClass({
     },
         
     addLike: function(){
-      var correctSlogan =  SloganCollection.find(function(model){model.get('id') == this.props.slog; });
-    correctSlogan.set({likes: correctSlogan.get('likes')+1});
+      console.log(SloganCollection);
+      var book = SloganCollection.findWhere('id'==this.props.key);
+      
+      console.log(book);
 
+    
     }
 });
+//correctSlogan.set({likes: correctSlogan.get('likes')+1});

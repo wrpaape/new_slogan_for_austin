@@ -1,4 +1,5 @@
 /* global Backbone React */
+var sloganlist = new SloganCollection();
 var App = Backbone.Router.extend({
     routes: {
         '': 'home',
@@ -44,12 +45,3 @@ log.save();
 loglist.add(log);
 loglist.fetch();
 
-$.get('http://localhost:3000/slogans/liked', function(likey){ 
-    console.log(likey);
-    $('#most-liked-list').html("");
-    for(var i=0;i<likey.length;i++){
-    $('#container').append("<div ref ='"+ likey[i].attr('id') + "'>" + likey[i] +"<br/></div>");
-    }
-
-
-});
