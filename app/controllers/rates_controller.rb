@@ -8,7 +8,7 @@ class RatesController < ApplicationController
   def create
     if @current_user
       if rate = Rate.find_by(rate_params.reject { |k| k == :likes || k == :hates })
-        rate.update(likes: rate_params[:likes], hates: rate_params[:hates])
+        rate.update(likes: rate_params[:likes], hates: rate_params[:hates]) unless rate.likes == rate_params[:likes]
       else
         rate = Rate.create(rate_params)
       end

@@ -4,21 +4,51 @@ class Slogan < ActiveRecord::Base
   belongs_to :user
   after_create :revise, :trend, :plot
 
-  def plot_leaderboard(slogans)
-    labels = []
-    trend_coeffs = []
-    slogans.each { |slogan| trend_coeffs << slogan.trend_coeff }
+  def plot_leaderboard(slogans, mode)
+    case mode
+    when "trend"
+      trend_coeffs = []
+      slogans.each { |slogan| trend_coeffs << slogan.trend_coeff }
+      max_abs = [trend_coeffs.first, trend_coeffs.last].max
+      min_inc = 10
+      data = trend_coeffs
+      label = "Mean Trend Index"
+      title = "Trendiest Slogans"
+    when "liked"
+      likes = []
+      slogans.each { |slogan| likes << slogan.likes }
+      max_abs = [likes.first, likes.last].max
+      min_inc = 5
+      data = likes
+      label = "Likes"
+      title = "Most Liked Slogans"
+    when "hated"
+      hates = []
+      slogans.each { |slogan| hates << slogan.hates }
+      max_abs = [hates.first, hates.last].max
+      min_inc = 5
+      data = hates
+      label = "Hates"
+      title = "Most Hated Slogans"
+    when "rated"
+      ratings = []
+      slogans.each { |slogan| ratings << slogan.rating }
+      max_abs = [ratings.first, ratings.last].max
+      min_inc = 5
+      data = ratings
+      label = "Likes - Hates"
+      title = "Highest Rated Slogans"
+    end
     g = Gruff::Bar.new
-    g.title = "Trendiest Slogans"
+    g.title = title
     g.theme_rails_keynote
-    g.y_axis_label = "Mean Trend Index"
-    max_abs = [trend_coeffs.first, trend_coeffs.last].max
+    g.y_axis_label = label
     inc = max_abs / 3
-    inc.zero? ? g.y_axis_increment = 10 : g.y_axis_increment = inc
+    inc.zero? ? g.y_axis_increment = min_inc : g.y_axis_increment = inc
     g.labels = { 0 => "1", 1 => "2", 2 => "3", 3 => "4", 4 => "5" }
-    g.data " ", trend_coeffs
+    g.data " ", data
     g.hide_legend = true
-    g.write("#{Rails.root.join('app', 'assets', 'images', "slogan_leaderboard")}.png")
+    g.write("#{Rails.root.join('app', 'assets', 'images', "slogan_leaderboard_#{mode}")}.png")
   end
 
   private
