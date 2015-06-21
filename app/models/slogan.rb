@@ -11,7 +11,7 @@ class Slogan < ActiveRecord::Base
     g = Gruff::Bar.new
     g.title = "Trendiest Slogans"
     g.theme_rails_keynote
-    g.y_axis_label = "Trend Index"
+    g.y_axis_label = "Mean Trend Index"
     max_abs = [trend_coeffs.first, trend_coeffs.last].max
     inc = max_abs / 3
     inc.zero? ? g.y_axis_increment = 10 : g.y_axis_increment = inc

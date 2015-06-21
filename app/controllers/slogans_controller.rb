@@ -47,8 +47,7 @@ class SlogansController < ApplicationController
   def create
     begin
       return if authenticate_user!
-      slogan_params[:user_id] = slogan_params[:user_id].to_i
-      @slogan = Slogan.create(slogan_params)
+      @slogan = Slogan.create({body: slogan_params[:body], user_id: current_user.id })
       if @slogan.save
         render_response(@slogan, 200)
       else
@@ -125,7 +124,7 @@ class SlogansController < ApplicationController
     begin
       return if authenticate_user!
       slogan = Slogan.find(params[:id])
-      if slogan.update(slogan_params)
+      if slogan.update({body: slogan_params[:body], user_id: current_user.id })
         render_response(@slogan, 200)
       else
         render_response("errors occurred", 500)
@@ -152,7 +151,7 @@ class SlogansController < ApplicationController
   private
 
   def slogan_params
-    params.permit(:user_id, :body)
+    params.permit(:body)
   end
 
   def render_response(response, response_code)
