@@ -51,7 +51,7 @@ class SlogansController < ApplicationController
       if @slogan.save
         render_response(@slogan, 200)
       else
-        render_response("errors occurred", 500)
+        render_response({ response: "errors occurred" }, 500)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
@@ -131,7 +131,7 @@ class SlogansController < ApplicationController
       if slogan.update({ body: slogan_params[:body], user_id: current_user.id })
         render_response(@slogan, 200)
       else
-        render_response("errors occurred", 500)
+        render_response({ response: "errors occurred"}, 500)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
@@ -144,7 +144,7 @@ class SlogansController < ApplicationController
     begin
       return if authenticate_user!
       Slogan.destroy(params[:id])
-      render_response("slogan destroyed", 200)
+      render_response({ response: "slogan destroyed"}, 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error

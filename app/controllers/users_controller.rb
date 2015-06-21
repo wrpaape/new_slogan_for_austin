@@ -25,19 +25,19 @@ class UsersController < ApplicationController
   def create
     begin
       if User.find_by(name: user_params[:name]) && User.find_by(email: user_params[:email])
-        render_response("username and email is already taken", 500)
+        render_response({ response: "username and email is already taken" }, 500)
       elsif User.find_by(name: user_params[:name])
-        render_response("username is already taken", 500)
+        render_response({ response: "username is already taken" }, 500)
       elsif User.find_by(email: user_params[:email])
-        render_response("email is already taken", 500)
+        render_response({ response: "email is already taken", 500)
       elsif user_params[:password] != user_params[:password_confirmation]
-        render_response("passwords do not match", 500)
+        render_response({ response: "passwords do not match" }, 500)
       else
         user = User.new(user_params)
         if user.save
-          render_response("user successfully created", 200)
+          render_response({ response: "user successfully created" }, 200)
         else
-          render_response("errors occurred", 500)
+          render_response({ response: "errors occurred" }, 500)
         end
       end
       rescue ActiveRecord::RecordNotFound => error

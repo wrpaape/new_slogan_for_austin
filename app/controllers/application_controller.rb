@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      render_response("you must be logged in to do that.", 500)
+      render_response({ response: "you must be logged in to do that." }, 500)
       true
     end
   end

@@ -17,7 +17,7 @@ HELP US!
 Register and contribute a slogan today!
 THE SLOGAN WITH THE MOST VOTES WINS!!
 """
-      render_response(about, 200)
+      render_response({ response: about }, 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error
