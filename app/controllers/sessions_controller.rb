@@ -10,18 +10,18 @@ class SessionsController < ApplicationController
       # Specifically, the rails 'session'. This is how we keep the user
       # logged in when they navigate around our website.
       session[:user_id] = user.id
-      render_response("successfully logged in", 200)
+      render_response({ response: "successfully logged in" }, 200)
     elsif user
       # If user's login doesn't work, send them back to the login form.
-      render_response("incorrect password", 422)
+      render_response({ response: "incorrect password" }, 422)
     else
-      render_response("username or email does not exist", 422)
+      render_response({ response: "username or email does not exist" }, 422)
     end
   end
 
   def destroy
     session[:user_id] = nil
-    render_response("successfully logged out", 200)
+    render_response({ response: "successfully logged out" }, 200)
   end
 
   private

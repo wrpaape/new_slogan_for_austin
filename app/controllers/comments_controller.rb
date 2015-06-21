@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
       if @comment.save
         render_response(@comment, 500)
       else
-        render_response("error occurred", 500)
+        render_response({ response: "error occurred" }, 500)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
@@ -78,7 +78,7 @@ class CommentsController < ApplicationController
       if @comment.save
         render_response(@comment, 500)
       else
-        render_response("error occurred", 500)
+        render_response({ response: "error occurred" }, 500)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
