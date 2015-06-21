@@ -24,6 +24,7 @@ class Slogan < ActiveRecord::Base
       unless rel.to_f > 0.001
         series = series[2...-1].split(", ")
         series.map! { |point| point.to_f }
+        next if series.include?(0)
         rel_words[word] = []
         series.each do |point|
           rel_words[word] << point.to_f
@@ -67,10 +68,10 @@ class Slogan < ActiveRecord::Base
     self.trend_coeffs.split("||").each { |point| series << point.to_f }
     g = Gruff::Bar.new
     g.title = self.body
-    # g.theme_37signals
     g.theme_rails_keynote
     g.y_axis_label = "Trend Index"
-    inc = ((series.max - series.min) / 5).ceil
+    max_abs = [series.max.abs, series.min.abs].max
+    inc = max_abs / 3
     inc.zero? ? g.y_axis_increment = 10 : g.y_axis_increment = inc
     g.labels = { 0 => '2000', 1 => '2001', 2 => '2002', 3 => '2003', 4 => '2004',
              5 => '2005', 6 => '2006', 7 => '2007' }
