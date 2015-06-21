@@ -32,10 +32,9 @@ class SlogansController < ApplicationController
     end
   end
 
-
   def new
     begin
-      authenticate_user!
+      return if authenticate_user!
       @slogan = Slogan.new
       render_response(@slogan, 200)
       rescue ActiveRecord::RecordNotFound => error
@@ -47,9 +46,8 @@ class SlogansController < ApplicationController
 
   def create
     begin
-      authenticate_user!
-      slogan_params[:user_id] = slogan_params[:user_id].to_i
-      @slogan = Slogan.create(slogan_params)
+      return if authenticate_user!
+      @slogan = Slogan.create({body: slogan_params[:body], user_id: current_user.id })
       if @slogan.save
         render_response(@slogan, 200)
       else
@@ -109,11 +107,12 @@ class SlogansController < ApplicationController
     end
   end
 
-  def edit
+  def leaderboard
     begin
-      authenticate_user!
-      @slogan = Slogan.find(params[:id])
-      render_response(@slogan, 200)
+      @slogan = Slogan.new
+      @slogans = Slogan.order(trend_coeff: :desc).limit(5)
+      @slogan.plot_leaderboard(@slogans)
+      render_response(@slogans, 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error
@@ -123,9 +122,9 @@ class SlogansController < ApplicationController
 
   def update
     begin
-      authenticate_user!
+      return if authenticate_user!
       slogan = Slogan.find(params[:id])
-      if slogan.update(slogan_params)
+      if slogan.update({body: slogan_params[:body], user_id: current_user.id })
         render_response(@slogan, 200)
       else
         render_response("errors occurred", 500)
@@ -139,7 +138,7 @@ class SlogansController < ApplicationController
 
   def destroy
     begin
-      authenticate_user!
+      return if authenticate_user!
       Slogan.destroy(params[:id])
       render_response("slogan destroyed", 200)
       rescue ActiveRecord::RecordNotFound => error
@@ -152,7 +151,7 @@ class SlogansController < ApplicationController
   private
 
   def slogan_params
-    params.permit(:user_id, :body)
+    params.permit(:body)
   end
 
   def render_response(response, response_code)

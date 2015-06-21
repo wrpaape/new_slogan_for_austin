@@ -4,6 +4,23 @@ class Slogan < ActiveRecord::Base
   belongs_to :user
   after_create :revise, :trend, :plot
 
+  def plot_leaderboard(slogans)
+    labels = []
+    trend_coeffs = []
+    slogans.each { |slogan| trend_coeffs << slogan.trend_coeff }
+    g = Gruff::Bar.new
+    g.title = "Trendiest Slogans"
+    g.theme_rails_keynote
+    g.y_axis_label = "Mean Trend Index"
+    max_abs = [trend_coeffs.first, trend_coeffs.last].max
+    inc = max_abs / 3
+    inc.zero? ? g.y_axis_increment = 10 : g.y_axis_increment = inc
+    g.labels = { 0 => "1", 1 => "2", 2 => "3", 3 => "4", 4 => "5" }
+    g.data " ", trend_coeffs
+    g.hide_legend = true
+    g.write("#{Rails.root.join('app', 'assets', 'images', "slogan_leaderboard")}.png")
+  end
+
   private
 
   def revise
@@ -20,9 +37,11 @@ class Slogan < ActiveRecord::Base
     rel_words = {}
     phrase.each do |word|
       rel, series = `python #{Rails.root.join('lib', 'assets', 'ngram.py')} #{word} #{start} #{last} 2>&1`.chomp.split('||')
+      next if series.nil?
       unless rel.to_f > 0.001
         series = series[2...-1].split(", ")
         series.map! { |point| point.to_f }
+        next if series.include?(0)
         rel_words[word] = []
         series.each do |point|
           rel_words[word] << point.to_f
@@ -65,14 +84,18 @@ class Slogan < ActiveRecord::Base
     series = []
     self.trend_coeffs.split("||").each { |point| series << point.to_f }
     g = Gruff::Bar.new
-    g.title = "Slogan Trend Behavior"
-    g.theme_37signals
+    g.title = self.body
+    g.theme_rails_keynote
     g.y_axis_label = "Trend Index"
-    g.y_axis_increment = 10
+    max_abs = [series.max.abs, series.min.abs].max
+    inc = max_abs / 3
+    series.max > inc ? g.maximum_value = series.max : g.maximum_value = inc
+    series.min < - inc ? g.minimum_value = series.min : g.minimum_value = - inc
+    inc.zero? ? g.y_axis_increment = 10 : g.y_axis_increment = inc
     g.labels = { 0 => '2000', 1 => '2001', 2 => '2002', 3 => '2003', 4 => '2004',
              5 => '2005', 6 => '2006', 7 => '2007' }
-    # g.data 'Year', (2000...2008).to_a
-    g.data self.body, series
+    g.data " ", series
+    g.hide_legend = true
     g.write("#{Rails.root.join('app', 'assets', 'images', "slogan#{self.id}")}.png")
   end
 end
