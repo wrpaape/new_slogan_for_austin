@@ -1,4 +1,4 @@
-var DisplayComment = React.createClass({
+var DisplayComments = React.createClass({
     render: function () {
         return (
           <div>

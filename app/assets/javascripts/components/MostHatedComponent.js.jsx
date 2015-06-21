@@ -14,7 +14,11 @@ var MostHated = React.createClass({
                 <h1>Most Hated</h1>
                 <ul>
                     <li ref={H.a[0].id}>
-                        {H.a[0].body}<br/>
+                        <div ref = {H.a[0].id} onClick={this.gotoSloganPage}>
+                           {H.a[0].body}
+                           
+                        </div>
+                        <br/>
                         <HateButton slog={H.a[0].id}/>
                         <LikeButton slog={H.a[0].id}/>
                     </li>
@@ -53,7 +57,12 @@ var MostHated = React.createClass({
             console.log(data);
             H.a = data;
         });
+    },
+    gotoSloganPage: function(){
+        var go = "sloganpage/"+(H.a[0].id).toString();
+        {app.navigate(go, {trigger: true});}
     }
+
 });
 
 
