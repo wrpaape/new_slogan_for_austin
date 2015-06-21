@@ -3,7 +3,7 @@ class Rate < ActiveRecord::Base
   belongs_to :slogan
   belongs_to :comment
   after_create :revise
-  after_update :revisex2
+  after_update :revise_update
 
   private
 
@@ -34,7 +34,61 @@ class Rate < ActiveRecord::Base
     parent_user.save
   end
 
-  def revisex2
-    2.times{ revise }
+  def revise_update
+    if slogan = Slogan.find_by(id: slogan_id)
+      if likes == 1
+        slogan.rating += 2
+        slogan.likes += 1
+        slogan.hates -= 1
+        slogan.save
+        parent_user = slogan.user
+        parent_user.likes += 1
+        parent_user.hates -= 1
+        parent_user.rating += 2
+        parent_user.rating_slogan += 2
+        parent_user.likes_slogan += 1
+        parent_user.hates_slogan -= 1
+      else
+        slogan.rating -= 2
+        slogan.likes -= 1
+        slogan.hates += 1
+        slogan.save
+        parent_user = slogan.user
+        parent_user.likes -= 1
+        parent_user.hates += 1
+        parent_user.rating -= 2
+        parent_user.rating_slogan -= 2
+        parent_user.likes_slogan -= 1
+        parent_user.hates_slogan += 1
+      end
+    else
+      comment = Comment.find(comment_id)
+      if likes == 1
+        comment.rating += 2
+        comment.likes += 1
+        comment.hates -= 1
+        comment.save
+        parent_user = comment.user
+        parent_user.likes += 1
+        parent_user.hates -= 1
+        parent_user.rating += 2
+        parent_user.rating_comment += 2
+        parent_user.likes_comment += 1
+        parent_user.hates_comment -= 1
+      else
+        comment.rating -= 2
+        comment.likes -= 1
+        comment.hates += 1
+        comment.save
+        parent_user = comment.user
+        parent_user.likes -= 1
+        parent_user.hates += 1
+        parent_user.rating -= 2
+        parent_user.rating_comment -= 2
+        parent_user.likes_comment -= 1
+        parent_user.hates_comment += 1
+      end
+    end
+    parent_user.save
   end
 end
