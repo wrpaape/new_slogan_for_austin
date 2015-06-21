@@ -2,7 +2,7 @@ var HateButton = React.createClass({
     render: function () {
         return (
           
-            <button className="like" onclick={this.addHate}>HATE 
+            <button className="like" onClick={this.addHate}>{this.props.slogan.get('hates')} HATE 
             </button>
           
           
@@ -10,8 +10,18 @@ var HateButton = React.createClass({
     },
         
     addHate: function(){
-      var correctSlogan =  SloganCollection.find(function(model){model.get('id') == this.props.slog; });
-    correctSlogan.set({hates: correctSlogan.get('hates')+1});
+       
+var numHates = this.props.slogan.get('hates')+1;
+this.props.slogan.set({hates:numHates});
+var rrr = new RateModel({
+    hates: 1,
+    likes: 0,
+    slogan_id: this.props.slogan.get('id')
+});
+console.log(this.props.sloganid);
+rrr.save();
+
+    // correctSlogan.set({hates: correctSlogan.get('hates')+1});
 
     }
 });

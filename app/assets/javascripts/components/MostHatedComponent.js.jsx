@@ -1,7 +1,11 @@
 var MostHated = React.createClass({
     getInitialState: function() {
+        var H = new SloganCollection();
+        H.on('change', function(){
+            this.forceUpdate();
+        },this)
         return {
-            H: []
+            H: H
         }
     },
     componentDidMount: function() {
@@ -10,22 +14,22 @@ var MostHated = React.createClass({
             function(data) {
                 if(this.isMounted()) {
                     this.setState({
-                        H: (data)
+                        H: this.state.H.reset(data)
                     });
                 }
             }.bind(this)
         );
     },
     render: function () {
-
+            console.log(this.state.H);
         thumbnails = this.state.H.map(function(testModel){
-            
+            console.log(testModel);
             return (
                     <div key={testModel.id}>
-                        <h4>{testModel.body}</h4>
+                        <h4>{testModel.get('body')}</h4>
                         
-                        <LikeButton key={testModel.id} count={testModel.likes} />
-                        <HateButton key={testModel.id+1000 }count={testModel.hates} />
+                        <LikeButton key={testModel.id+1000} count={testModel.likes} />
+                        <HateButton slogan={testModel} />
                     </div>
                 );
             

@@ -7,9 +7,9 @@ var HomePage = React.createClass({
             <h1> Home Page </h1>
             <BigSlogan/><br/>
             <a href='#slogan/3'>randomsloganlink</a><br/>
-            <MostLiked/>
+           
             <MostHated/>
-            <MostRecent/>
+          
             <InputSlogan/>
           </div>
         );

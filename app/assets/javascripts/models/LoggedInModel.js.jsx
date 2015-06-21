@@ -2,9 +2,9 @@
 var LoggedInModel = Backbone.Model.extend({
 	defaults: {
 		
-		name: "keithreynolds",
-		email: "keithreynolds@keith.com",
-		password: "boo"
+		name: "admin",
+		email: "admin@admin.com",
+		password: "admin"
 
 	},
 	urlRoot: 'http://localhost:3000/login',

@@ -43,5 +43,5 @@ var log = new LoggedInModel();
 var loglist = new LoggedInCollection;
 log.save();
 loglist.add(log);
-loglist.fetch();
+
 
