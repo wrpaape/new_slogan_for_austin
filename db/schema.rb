@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150620002231) do
     t.integer  "hates",          default: 0
     t.integer  "comments_count", default: 0
     t.float    "trend_coeff",    default: 0.0
-    t.string   "trend_coeffs",   default: ""
+    t.text     "trend_coeffs",   default: ""
     t.integer  "user_id",                      null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false

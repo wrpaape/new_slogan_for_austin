@@ -35,7 +35,7 @@ class SlogansController < ApplicationController
 
   def new
     begin
-      authenticate_user!
+      return if authenticate_user!
       @slogan = Slogan.new
       render_response(@slogan, 200)
       rescue ActiveRecord::RecordNotFound => error
@@ -47,7 +47,7 @@ class SlogansController < ApplicationController
 
   def create
     begin
-      authenticate_user!
+      return if authenticate_user!
       slogan_params[:user_id] = slogan_params[:user_id].to_i
       @slogan = Slogan.create(slogan_params)
       if @slogan.save
@@ -111,7 +111,7 @@ class SlogansController < ApplicationController
 
   def edit
     begin
-      authenticate_user!
+      return if authenticate_user!
       @slogan = Slogan.find(params[:id])
       render_response(@slogan, 200)
       rescue ActiveRecord::RecordNotFound => error
@@ -123,7 +123,7 @@ class SlogansController < ApplicationController
 
   def update
     begin
-      authenticate_user!
+      return if authenticate_user!
       slogan = Slogan.find(params[:id])
       if slogan.update(slogan_params)
         render_response(@slogan, 200)
@@ -139,7 +139,7 @@ class SlogansController < ApplicationController
 
   def destroy
     begin
-      authenticate_user!
+      return if authenticate_user!
       Slogan.destroy(params[:id])
       render_response("slogan destroyed", 200)
       rescue ActiveRecord::RecordNotFound => error

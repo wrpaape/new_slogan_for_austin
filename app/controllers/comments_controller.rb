@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
   def new
     begin
-      authenticate_user!
+      return if authenticate_user!
       @comment = Comment.new
       render_response(@comment, 200)
       rescue ActiveRecord::RecordNotFound => error
@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
 
   def create
     begin
-      authenticate_user!
+      return if authenticate_user!
       @comment = Comment.create(comment_params)
       if @comment.save
         render_response(@comment, 500)
