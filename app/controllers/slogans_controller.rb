@@ -107,47 +107,16 @@ class SlogansController < ApplicationController
     end
   end
 
-  def leaderboard_trend
+  def leaderboards
     begin
-      @slogans = Slogan.order(trend_coeff: :desc).limit(5)
-      Slogan.new.plot_leaderboard(@slogans, "trend")
-      render_response(@slogans, 200)
-      rescue ActiveRecord::RecordNotFound => error
-        render_response(error.message, 404)
-      rescue StandardError => error
-        render_response(error.message, 422)
-    end
-  end
+      slogans = {}
+      slogans["trend"] = Slogan.order(trend_coeff: :desc).limit(5)
+      slogans["likes"] = Slogan.order(likes: :desc).limit(5)
+      slogans["hates"] = Slogan.order(hates: :desc).limit(5)
+      slogans["rating"] = Slogan.order(rating: :desc).limit(5)
 
-  def leaderboard_likes
-    begin
-      @slogans = Slogan.order(likes: :desc).limit(5)
-      Slogan.new.plot_leaderboard(@slogans, "liked")
-      render_response(@slogans, 200)
-      rescue ActiveRecord::RecordNotFound => error
-        render_response(error.message, 404)
-      rescue StandardError => error
-        render_response(error.message, 422)
-    end
-  end
-
-  def leaderboard_hates
-    begin
-      @slogans = Slogan.order(hates: :desc).limit(5)
-      Slogan.new.plot_leaderboard(@slogans, "hated")
-      render_response(@slogans, 200)
-      rescue ActiveRecord::RecordNotFound => error
-        render_response(error.message, 404)
-      rescue StandardError => error
-        render_response(error.message, 422)
-    end
-  end
-
-  def leaderboard_rating
-    begin
-      @slogans = Slogan.order(rating: :desc).limit(5)
-      Slogan.new.plot_leaderboard(@slogans, "rated")
-      render_response(@slogans, 200)
+      slogans.each { |k, v| Slogan.new.plot_leaderboard(k, v) }
+      render_response(slogans, 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error

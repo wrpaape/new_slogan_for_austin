@@ -4,7 +4,7 @@ class Slogan < ActiveRecord::Base
   belongs_to :user
   after_create :revise, :trend, :plot
 
-  def plot_leaderboard(slogans, mode)
+  def plot_leaderboard(mode, slogans)
     case mode
     when "trend"
       trend_coeffs = []
@@ -14,7 +14,7 @@ class Slogan < ActiveRecord::Base
       data = trend_coeffs
       label = "Mean Trend Index"
       title = "Trendiest Slogans"
-    when "liked"
+    when "likes"
       likes = []
       slogans.each { |slogan| likes << slogan.likes }
       max_abs = [likes.first, likes.last].max
@@ -22,7 +22,8 @@ class Slogan < ActiveRecord::Base
       data = likes
       label = "Likes"
       title = "Most Liked Slogans"
-    when "hated"
+      @min_val = 0
+    when "hates"
       hates = []
       slogans.each { |slogan| hates << slogan.hates }
       max_abs = [hates.first, hates.last].max
@@ -30,7 +31,8 @@ class Slogan < ActiveRecord::Base
       data = hates
       label = "Hates"
       title = "Most Hated Slogans"
-    when "rated"
+      @min_val = 0
+    when "rating"
       ratings = []
       slogans.each { |slogan| ratings << slogan.rating }
       max_abs = [ratings.first, ratings.last].max
@@ -47,6 +49,7 @@ class Slogan < ActiveRecord::Base
     inc.zero? ? g.y_axis_increment = min_inc : g.y_axis_increment = inc
     g.labels = { 0 => "1", 1 => "2", 2 => "3", 3 => "4", 4 => "5" }
     g.data " ", data
+    g.minimum_value = @min_val if @min_val
     g.hide_legend = true
     g.write("#{Rails.root.join('app', 'assets', 'images', "slogan_leaderboard_#{mode}")}.png")
   end
