@@ -1,40 +1,31 @@
-var UserModel = React.createClass({
-	render: function(){
-		return(
+var Login = React.createClass({
+    render: function () {
+        return (
+          <div>
+            	<NavComponent/>
+            	<MainTitle/>
+             	<h1> Login </h1>
+            <form id="login-form">
+             		<input id="login-name"/>
+             		<input id="login-password"/>
+             		<button type="submit">Submit</button>
+           	</form>
+          </div>
+        );
 
-			<form className="loginform" onSubmit={this.loginSubmitted}>
-				<label>Login Form</label>
-				<div ref="error" className="error"></div>
-				<div ref="success" className="success"></div>
-				<input ref="loginInput" type="text" placeholder="Email address"/>
-				<input ref="loginPass" type="password" placeholder="Password"/>
-				<button>Submit</button>
-			</form>
-
-		);
-	},
-
-
-	//login function
-
-    $('#loginform').on('submit', loginToServer);
+  $('#login-form').on('submit', loginToServer);
 
 
-        function loginToServer(){
-            var loginObject = {};
-           		loginObject.name = $('#login-name').val();
-           		loginObject.password = $('#login-password').val();
-           $.post('http://localhost:3000/login',loginObject,function(response){
-                if(response==="successfully logged in")
-                	{navigate home};
-                else{
-                	$('login-form').append("your name or password is wrong, or you need to register");}
-           });
+       	function loginToServer(e){
+       		e.preventDefault;
+       		var loginObject = {};
+        	loginObject.name = $('#login-name').val();
+        	loginObject.password = $('#login-password').val();
+        	$.post('http://localhost:3000/login',loginObject,function(response){
+        	 	if(response==="successfully logged in"){app.navigate('home', {trigger: true});}
+        	 	else{$('login-form').append("your name or password is wrong, or you need to register");}
+        	});
 
-          }
-   }
+       	}
+    }
 });
-
-
-
-

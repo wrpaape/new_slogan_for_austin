@@ -1,16 +1,41 @@
-var SloganModel = React.createClass({
-	render: function(){
-		return(
+var Register = React.createClass({
+    render: function () {
+        return (
+          <div>
+          	<NavComponent/>
+          	<MainTitle/>
+           	<h1> Register </h1>
+           	<form id="register-form">
+           		<input id="register-name"/>
+           		<input id="register-password"/>
+           		<button type="submit">
+           			Submit
+           		</button>
+           	</form>
+           
+          </div>
+        );
+       $('#register-form').on('submit', addNewUser);
 
-			<form className="registerForm" onSubmit={this.commentSubmitted}>
-				<label>Register Form</label>
-				<div ref="error" className="error"></div>
-				<div ref="success" className="success"></div>
-				<p>Choose a unique and awesome username and password! </p>
-				<input ref="loginInput" type="text" placeholder="IguanaOverlord"/>
-				<input ref="loginPass" type="password" placeholder="Password"/>
-				<button>Submit</button>
-			</form>
 
-		);
-	},
+       	function addNewUser(e){
+       		e.preventDefault;
+       		Reggie = new UserModel({
+
+       			name: $('#register-name').val(),
+       			password: $('register-password').val()
+
+       		});
+       		$.post('http://localhost:3000/users',Reggie,function(response){
+       			if(response = "user successfully created"){
+       				UserCollection.add(Reggie);
+       				app.navigate('home', {trigger: true});
+       			}
+       			else {
+       				$('#register-form').append('user name already in use');
+       			}
+       		});	
+       	}
+       		
+    }
+});

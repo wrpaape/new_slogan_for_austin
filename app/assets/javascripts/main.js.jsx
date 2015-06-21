@@ -4,7 +4,6 @@ var App = Backbone.Router.extend({
         '': 'home',
         'home': 'home',
         'sloganpage/:slogan': 'sloganpage',
-
         'userpage/:user': 'userpage',
         'register':'register',
         'login':'login'},

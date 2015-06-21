@@ -14,22 +14,10 @@ var InputSlogan = React.createClass ({
 		e.preventDefault();
 		var newsloganinput = new SloganModel({
 			body: $("#newslogantext").val();
-			// numLikes: this.refs.numLikes.getDOMNode().value,
-			// numHates: this.refs.numHates.getDOMNode().value,
+			
 		});
 
-});
+	});
 		
-
-var SloganComponent = React.createClass ({
-	render: function() {
-		return (
-			<form>
-			<h1>Enter your slogan idea:</h1>
-				<input ref="textarea" type= "text" value="Austin: we got bats." />
-				<button type= "submit">Submit </button>
-			</form>
-		);
-	}
 });
 

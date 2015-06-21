@@ -24,6 +24,25 @@ hate button function
 
 watch for change in collection
 update corresponding 
-
 userhistory component
+
+things to work on:
+
+1. bigslogancomponent
+-get body attribute, + object in most liked
+
+2. bigusername component
+-get name of user
+
+3. displaycommentscomponent
+-for loop...
+
+4. hate and like buttons
+
+5. navcomponent
+
+6. usercommentlistcomponent
+-use reid's URL for (something...?)
+
+7. usersloganlistcomponent
 
