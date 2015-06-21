@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'slogans/leaderboard', to: 'slogans#leaderboard'
   get 'slogans/liked', to: 'slogans#most_liked'
   get 'slogans/hated', to: 'slogans#most_hated'
   get 'comments/liked', to: 'comments#most_liked'
