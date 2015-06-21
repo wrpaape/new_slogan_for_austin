@@ -18,6 +18,7 @@ var InputSlogan = React.createClass({
     		body: React.findDOMNode(this.refs.sloganbody).value
     		});
     	console.log(newSlog);
+    	newSlog.save();
     	sloganlist.add(newSlog);
 
     }

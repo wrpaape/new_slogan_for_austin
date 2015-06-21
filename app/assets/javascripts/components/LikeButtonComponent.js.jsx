@@ -11,11 +11,7 @@ var LikeButton = React.createClass({
     },
         
     addLike: function(){
-      console.log(SloganCollection);
-      var book = SloganCollection.findWhere('id'==this.props.key);
       
-      console.log(book);
-
     
     }
 });
