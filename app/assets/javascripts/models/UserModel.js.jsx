@@ -1,7 +1,7 @@
 
 
 
-UserModel = Backbone.Model.extend({
+var UserModel = Backbone.Model.extend({
 	defaults: {
 		
 		name: "",
