@@ -32,7 +32,6 @@ class SlogansController < ApplicationController
     end
   end
 
-
   def new
     begin
       return if authenticate_user!
@@ -102,18 +101,6 @@ class SlogansController < ApplicationController
       @slogan = Slogan.find(params[:id])
       @comments = @slogan.comments.order(hates: :desc)
       render_response([@slogan, @comments], 200)
-      rescue ActiveRecord::RecordNotFound => error
-        render_response(error.message, 404)
-      rescue StandardError => error
-        render_response(error.message, 422)
-    end
-  end
-
-  def edit
-    begin
-      return if authenticate_user!
-      @slogan = Slogan.find(params[:id])
-      render_response(@slogan, 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error
