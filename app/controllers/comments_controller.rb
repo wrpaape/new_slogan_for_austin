@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
   def create
     begin
       return if authenticate_user!
-      @comment = Comment.create(comment_params)
+      @comment = Comment.create({ slogan_id: comment_param[:slogan_id], body: comment_params[:body], user_id: current_user.id })
       if @comment.save
         render_response(@comment, 500)
       else
@@ -71,10 +71,26 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    begin
+      return if authenticate_user!
+      @comment = Comment.update({ slogan_id: comment_param[:slogan_id], body: comment_params[:body], user_id: current_user.id })
+      if @comment.save
+        render_response(@comment, 500)
+      else
+        render_response("error occurred", 500)
+      end
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
   private
 
   def comment_params
-    params.permit(:user_id, :slogan_id, :body)
+    params.permit(:slogan_id, :body)
   end
 
   def render_response(response, response_code)
