@@ -60,6 +60,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @comment = Comment.find(params[:id])
+      render_response(@comment, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
   private
 
   def comment_params
