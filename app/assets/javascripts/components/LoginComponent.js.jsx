@@ -7,10 +7,10 @@ var Login = React.createClass({
           	<NavComponent/>
           	<MainTitle/>
            	<h1> Login </h1>
-           	<form ref="login-form">
-           		<input ref="login-name"/>
-           		<input ref="login-password"/>
-           		<button onClick={this.loginToServer} ref="login-button" type="submit">
+           	<form className="porkbelly" onSubmit={this.loginToServer} ref="loginform">
+           		<input ref="loginname"/>
+           		<input ref="loginpassword"/>
+           		<button   ref="login-button" type="submit">
            			Submit
            		</button>
            	</form>
@@ -24,13 +24,28 @@ var Login = React.createClass({
 
        	loginToServer: function(e){
        		e.preventDefault;
+          console.log(e);
        		var loginObject = {};
-        	loginObject.name = $("input[ref='login-name']" ).val();
-        	loginObject.password = $("input[ref='login-password']").val();
-        	$.post('http://localhost:3000/login',loginObject,function(response){
-        	 	if(response==="successfully logged in"){app.navigate('home', {trigger: true});}
-        	 	else{$("form[ref='login-form']").append("your name or password is wrong, or you need to register");}
-        	});
+        	loginObject.name = React.findDOMNode(this.refs.loginname).value;
+        	loginObject.password = React.findDOMNode(this.refs.loginpassword).value;
+        	// $.post('http://localhost:3000/login',loginObject,function(response){
+         //    console.log(response);
+        	//  	if(response=="successfully logged in"){app.navigate('home', {trigger: true});}
+        	//  	else{React.findDOMNode(this.refs.loginform).append("your name or password is wrong, or you need to register");}
+        	// });
+          $.post(
+            '/login',
+            loginObject,
+            'html'
+          )
+          .success(function(result) {
+              console.log(result);
+              app.navigate('home', {trigger: true});
+          })
+          .error(function(error) {
+            console.log(error);
+            $('.porkbelly').append('your password or name is incorrect or you need to register');
+          })
 
        	}
     
