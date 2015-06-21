@@ -107,12 +107,16 @@ class SlogansController < ApplicationController
     end
   end
 
-  def leaderboard
+  def leaderboards
     begin
-      @slogan = Slogan.new
-      @slogans = Slogan.order(trend_coeff: :desc).limit(5)
-      @slogan.plot_leaderboard(@slogans)
-      render_response(@slogans, 200)
+      slogans = {}
+      slogans["trend"] = Slogan.order(trend_coeff: :desc).limit(5)
+      slogans["likes"] = Slogan.order(likes: :desc).limit(5)
+      slogans["hates"] = Slogan.order(hates: :desc).limit(5)
+      slogans["rating"] = Slogan.order(rating: :desc).limit(5)
+
+      slogans.each { |k, v| Slogan.new.plot_leaderboard(k, v) }
+      render_response(slogans, 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error
@@ -124,7 +128,7 @@ class SlogansController < ApplicationController
     begin
       return if authenticate_user!
       slogan = Slogan.find(params[:id])
-      if slogan.update({body: slogan_params[:body], user_id: current_user.id })
+      if slogan.update({ body: slogan_params[:body], user_id: current_user.id })
         render_response(@slogan, 200)
       else
         render_response("errors occurred", 500)
