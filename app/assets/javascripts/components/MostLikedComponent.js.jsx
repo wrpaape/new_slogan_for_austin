@@ -1,60 +1,47 @@
-// var M = { a:[{id:1, hates:0, likes:0},
-//              {id:2, hates:0, likes:0},
-//              {id:3, hates:0, likes:0},
-//              {id:4, hates:0, likes:0},
-//              {id:5, hates:0, likes:0},
-//              {id:6, hates:0, likes:0}] 
-//          };
- 
+var MostLiked = React.createClass({
+    getInitialState: function() {
+        var HH = new SloganCollection();
+        HH.on('change', function(){
+            this.forceUpdate();
+        },this)
+        return {
+            HH: HH
+        }
+    },
+    componentDidMount: function() {
+        $.get (
+            "http://localhost:3000/slogans/hated",
+            function(data) {
+                if(this.isMounted()) {
+                    this.setState({
+                        HH: this.state.HH.reset(data)
+                    });
+                }
+            }.bind(this)
+        );
+    },
+    render: function () {
+            console.log(this.state.HH);
+        thumbnails = this.state.HH.map(function(testModel){
+            console.log(testModel);
+            return (
+                    <div key={testModel.id}>
+                        <h4>{testModel.get('body')}</h4>
+                        
+                        <LikeButton slogan={testModel} />
+                        <HateButton slogan={testModel} />
+                    </div>
+                );
+        });
+        return (
+            <div>
+            <h3>Most Liked</h3>
+                {thumbnails}
+            </div>
+        );
+    }
 
-// var MostLiked = React.createClass({
-//     render: function () {       
-//         return (
-//             <div>{this.getLikedArray}
-//                 <h1>Most Liked</h1>
-//                 <ul>
-//                     <li ref={M.a[0].id}>
-//                         {M.a[0].body}<br/>
-//                         <HateButton slog={M.a[0].id} />
-//                         <LikeButton slog={M.a[0].id} />
-//                     </li>
-//                     <li ref={M.a[1].id}>
-//                         {M.a[1].body}<br/>
-//                         <HateButton slog={M.a[0].id} />
-//                         <LikeButton slog={M.a[0].id} />
-//                     </li>
-//                     <li ref={M.a[2].id}>
-//                         {M.a[2].body}<br/>
-//                         <HateButton slog={M.a[0].id} />
-//                         <LikeButton slog={M.a[0].id} />
-//                     </li>
-//                     <li ref={M.a[3].id}>
-//                         {M.a[3].body}<br/>
-//                         <HateButton slog={M.a[0].id} />
-//                         <LikeButton slog={M.a[0].id} />
-//                     </li>
-//                     <li ref={M.a[4].id}>
-//                         {M.a[4].body}<br/>
-//                         <HateButton slog={M.a[0].id} />
-//                         <LikeButton slog={M.a[0].id} />
-//                     </li>
-//                     <li ref={M.a[5].id}>
-//                         {M.a[5].body}<br/>
-//                         <HateButton slog={M.a[0].id} />
-//                         <LikeButton slog={M.a[0].id} />
-//                     </li>
-//                 </ul>
-//             </div> 
-//         );    
-//     },
-//     getLikedArray: function(){
-        
-//         $.get("http://localhost:3000/slogans/liked",function(data){
-//             console.log(data);
-//             M.a = data;
-//         });
-//     }
-// });
-
+    
+});
 
 

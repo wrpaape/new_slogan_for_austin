@@ -18,7 +18,7 @@ var rrr = new RateModel({
     likes: 0,
     slogan_id: this.props.slogan.get('id')
 });
-console.log(this.props.sloganid);
+
 rrr.save();
 
     // correctSlogan.set({hates: correctSlogan.get('hates')+1});
