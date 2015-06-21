@@ -4,7 +4,7 @@ var MostRecent = React.createClass({
 
         return (
           <div>
-            <h1> Most Liked </h1>
+            <h1> Most Recent </h1>
             <section id="most-recent-list">
             </section>
           </div>

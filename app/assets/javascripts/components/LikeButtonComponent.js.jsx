@@ -1,19 +1,18 @@
+
 var LikeButton = React.createClass({
     render: function () {
         return (
           
-          	<button className="like">LIKE 
+          	<button className="like" onclick={this.addLike}>LIKE 
           	</button>
           
           
         );
-        $(this).on('click',addLike);
+    },
+        
+    addLike: function(){
+      var correctSlogan =  SloganCollection.find(function(model){model.get('id') == this.props.slog; });
+    correctSlogan.set({likes: correctSlogan.get('likes')+1});
 
-        function addLike(){
-        	fetch(SloganCollection);
-     		var correctSlogan = SloganCollection.findWhere(model.id===($.closest("div").attr("ref")));
-     		correctSlogan.likes = correctSlogan.likes + 1;
-
-        }
     }
 });
