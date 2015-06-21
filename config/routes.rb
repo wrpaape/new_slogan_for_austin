@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :users, :slogans, :comments
 
+  post 'rates', to: 'rates#create'
   get 'about', to: 'about#show'
   get  'login', to: 'sessions#new',    as: 'login'
   post 'login', to: 'sessions#create', as: 'create_session'
