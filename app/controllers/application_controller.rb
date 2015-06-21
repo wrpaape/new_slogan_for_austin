@@ -15,8 +15,14 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      flash[:alert] = "you must be logged in to do that."
-      redirect_to login_path
+      render_response("you must be logged in to do that.", 500)
+      true
     end
+  end
+
+  private
+
+  def render_response(response, response_code)
+    render json: response, status: response_code
   end
 end

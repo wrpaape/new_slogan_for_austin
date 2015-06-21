@@ -1,5 +1,5 @@
 initial_userbase = 100
-initial_slogan_count = 20
+initial_slogan_count = 5
 initial_comments_count = 200
 possible_rates = [{likes: 1, hates: 0}] * 5 + [{likes: 0, hates: 1}]
 
@@ -17,7 +17,7 @@ initial_userbase += 1
 all_users = User.all
 initial_slogan_count.times do
   user = all_users.sample
-  Slogan.create(body: Faker::Lorem.sentence,
+  Slogan.create(body: LiterateRandomizer.sentence,
               user_id: user.id)
 end
 

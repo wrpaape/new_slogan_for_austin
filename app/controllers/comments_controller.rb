@@ -10,9 +10,31 @@ class CommentsController < ApplicationController
     end
   end
 
+  def most_liked
+    begin
+      @comments = Comment.order(likes: :desc)
+      render_response(@comments, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
+  def most_hated
+    begin
+      @comments = Comment.order(hates: :desc)
+      render_response(@comments, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
   def new
     begin
-      authenticate_user!
+      return if authenticate_user!
       @comment = Comment.new
       render_response(@comment, 200)
       rescue ActiveRecord::RecordNotFound => error
@@ -24,7 +46,7 @@ class CommentsController < ApplicationController
 
   def create
     begin
-      authenticate_user!
+      return if authenticate_user!
       @comment = Comment.create(comment_params)
       if @comment.save
         render_response(@comment, 500)

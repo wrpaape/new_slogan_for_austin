@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       else
         user = User.new(user_params)
         if user.save
-          render_response(user, 200)
+          render_response("user successfully created", 200)
         else
           render_response("errors occurred", 500)
         end
@@ -51,6 +51,19 @@ class UsersController < ApplicationController
     begin
       @user = User.find(params[:id])
       render_response(@user, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
+  def show_profile
+    begin
+      @user = User.find(params[:id])
+      @slogans = @user.slogans
+      @comments = @user.comments
+      render_response([@user, @slogans, @comments], 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
       rescue StandardError => error

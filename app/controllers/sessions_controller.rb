@@ -13,9 +13,9 @@ class SessionsController < ApplicationController
       render_response("successfully logged in", 200)
     elsif user
       # If user's login doesn't work, send them back to the login form.
-      render_response("incorrect password", 200)
+      render_response("incorrect password", 422)
     else
-      render_response("username or email does not exist", 200)
+      render_response("username or email does not exist", 422)
     end
   end
 
