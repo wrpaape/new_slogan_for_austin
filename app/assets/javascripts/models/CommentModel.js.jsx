@@ -8,6 +8,6 @@ var CommentModel = Backbone.Model.extend({
 		slogan_id: null
 
 	},
-	urlRoot: 'http://localhost:3000/comments',
+	urlRoot: 'comments',
 	idAttribute: 'id'
 });

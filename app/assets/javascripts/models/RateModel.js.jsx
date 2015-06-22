@@ -10,6 +10,6 @@ var RateModel = Backbone.Model.extend({
 		comment_id: null
 
 	},
-	urlRoot: 'http://localhost:3000/rates',
+	urlRoot: 'rates',
 	idAttribute: 'id'
 });

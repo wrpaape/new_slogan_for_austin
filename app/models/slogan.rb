@@ -40,6 +40,7 @@ class Slogan < ActiveRecord::Base
       data = ratings
       label = "Likes - Hates"
       title = "Highest Rated Slogans"
+      @min_val = 0
     end
     g = Gruff::Bar.new
     g.title = title

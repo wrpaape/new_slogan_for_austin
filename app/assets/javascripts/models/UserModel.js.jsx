@@ -5,7 +5,7 @@ var UserModel = Backbone.Model.extend({
 		password: ""
 
 	},
-	urlRoot: 'http://localhost:3000/users',
+	urlRoot: 'users',
 	idAttribute: 'id'
 });
 
