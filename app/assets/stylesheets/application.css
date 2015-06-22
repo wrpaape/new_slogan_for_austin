@@ -14,7 +14,8 @@
  *= require_self
  */
 
-body {
-	background-image: url("./images/austinskylineb&w.jpg");
+
+.home {
+	background-image: url("http://1.bp.blogspot.com/-oDQAfgnhytU/TazRwNylHLI/AAAAAAAAAII/5XNegUU-sZA/s1600/franzia+2.jpg");
 	/*background image for all pages??*/
 }

@@ -15,6 +15,7 @@ var Register = React.createClass({
            
           </div>
         );
+        
        $('#register-form').on('submit', addNewUser);
 
 

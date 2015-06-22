@@ -1,0 +1,98 @@
+/* global Backbone React */
+var sloganlist = new SloganCollection();
+var App = Backbone.Router.extend({
+    routes: {
+        '': 'home',
+        'home': 'home',
+        'sloganpage/:slogan': 'sloganpage',
+        'userpage/:user': 'userpage',
+        'register':'register',
+        'login':'login'},
+<<<<<<< HEAD
+
+    home: function() {
+        $('#container').html('');
+        React.render(<HomePage/>, document.querySelector('#container'));
+        
+        var slogans = new SloganCollection();
+        slogans.fetch({success: function(){
+            React.render(<ListingComponent slogans={slogans}/>, document.querySelector("#container"));
+
+        function newSlogan (SloganModel) {
+            console.log('newSlogan was run');
+            newsloganinput.add(SloganModel);
+        }
+
+    },
+
+    sloganpage: function(slogan){
+        $('#container').html('');
+      React.render(<SloganPage/>, document.querySelector('#container'));
+    },
+
+    userpage:function(user){
+        $('#container').html('');
+        React.render(<UserPage/>, document.querySelector('#container'));
+
+        var user = new UserModel();
+        users.fetch({success: function() {
+            React.render(<userhistorycomponent user={user}/>, document.querySelector("#container"));
+    },
+    
+    register:function(){
+        $('#container').html('');
+        React.render(<Register/>, document.querySelector('#container'));
+    },
+
+    login:function(){
+        $('#container').html('');
+        React.render(<Login/>, document.querySelector('#container'));
+    }
+
+        'userpage/:user': 'user'
+    },
+=======
+>>>>>>> 450985b371c6c690d915590d0a535871c59d93db
+    home: function() {
+        $('#container').html('');
+        React.render(<HomePage/>, document.querySelector('#container'));
+    },
+
+    sloganpage: function(slogan){
+        $('#container').html('');
+      React.render(<SloganPage/>, document.querySelector('#container'));
+
+    },
+    userpage:function(user){
+<<<<<<< HEAD
+        React.render(<Profile/>, document.querySelector('#container'));
+        var user = new UserModel();
+        users.fetch({success: function() {
+            React.render(<userhistorycomponent user={user}/>, document.querySelector("#container"));
+        }})
+    },
+=======
+        $('#container').html('');
+        React.render(<UserPage/>, document.querySelector('#container'));
+    },
+    register:function(){
+        $('#container').html('');
+        React.render(<Register/>, document.querySelector('#container'));
+    },
+    login:function(){
+        $('#container').html('');
+        React.render(<Login/>, document.querySelector('#container'));
+    }
+>>>>>>> 450985b371c6c690d915590d0a535871c59d93db
+
+});
+
+
+
+var app = new App();
+Backbone.history.start();
+
+var log = new LoggedInModel();
+var loglist = new LoggedInCollection;
+log.save();
+loglist.add(log);
