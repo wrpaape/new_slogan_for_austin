@@ -26,8 +26,9 @@ var MostLiked = React.createClass({
             console.log(testModel);
             return (
                     <div key={testModel.id}>
-                        <h4>{testModel.get('body')}</h4>
-                        
+                        <div onClick={this.gotoSloganPage}>
+                            <h4>{testModel.get('body')} </h4>
+                        </div>
                         <LikeButton slogan={testModel} />
                         <HateButton slogan={testModel} />
                     </div>
@@ -39,6 +40,11 @@ var MostLiked = React.createClass({
                 {thumbnails}
             </div>
         );
+    },
+    gotoSloganPage: function(e){
+        e.preventDefault;
+        console.log('you clicked a slogan');
+         app.navigate('/sloganpage/'+testModel.id, {trigger: true});
     }
 
     

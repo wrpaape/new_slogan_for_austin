@@ -1,10 +1,10 @@
 var InputSlogan = React.createClass({
     render: function () {
         return (
-          <div>
+          <div className="sloganclass">
             <form ref="slogan-form">
-            	<input id="sssss" ref="sloganbody"/>
-            	<button ref="slogan-button" onClick={this.addSlogan} />
+            	<input id="sssss" ref="sloganbody" className="sloganinput"/>
+            	<button className="sloganbutton" ref="slogan-button" onClick={this.addSlogan}>SUBMIT A SLOGAN</button>
             </form>
             
           </div>
@@ -20,6 +20,8 @@ var InputSlogan = React.createClass({
     	console.log(newSlog);
     	newSlog.save();
     	sloganlist.add(newSlog);
+    	app.navigate('home', {trigger: true});
+    	app.navigate('',{trigger:true});
 
     }
 
