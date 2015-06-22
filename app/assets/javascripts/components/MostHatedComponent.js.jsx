@@ -11,7 +11,7 @@
     },
     componentDidMount: function() {
         $.get (
-            "http://localhost:3000/slogans/hated",
+            "slogans/hated",
             function(data) {
                 if(this.isMounted()) {
                     this.setState({
@@ -28,7 +28,7 @@
             return (
                     <div key={testModel.id}>
                         <h4>{testModel.get('body')}</h4>
-                        
+
                         <LikeButton slogan={testModel} />
                         <HateButton slogan={testModel} />
                     </div>
@@ -42,7 +42,7 @@
         );
     }
 
-    
+
 });
 
 

@@ -10,7 +10,7 @@ var MostLiked = React.createClass({
     },
     componentDidMount: function() {
         $.get (
-            "http://localhost:3000/slogans/hated",
+            "slogans/hated",
             function(data) {
                 if(this.isMounted()) {
                     this.setState({
@@ -47,7 +47,7 @@ var MostLiked = React.createClass({
          app.navigate('/sloganpage/'+testModel.id, {trigger: true});
     }
 
-    
+
 });
 
 
