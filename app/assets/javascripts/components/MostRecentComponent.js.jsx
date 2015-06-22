@@ -10,7 +10,7 @@
     },
     componentDidMount: function() {
         $.get (
-            "http://localhost:3000/slogans",
+            "http://localhost:3000/slogans/recent",
             function(data) {
                 if(this.isMounted()) {
                     this.setState({

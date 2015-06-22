@@ -4,13 +4,12 @@ var Login = React.createClass({
           <div>
             
           	
-          	<NavComponent/>
-          	<MainTitle/>
+          <NavComponent/>
            	<h1> Login </h1>
            	<form className="porkbelly" onSubmit={this.loginToServer} ref="loginform">
-           		<input ref="loginname"/>
-           		<input ref="loginpassword"/>
-           		<button   ref="login-button" type="submit">
+           		<input className="sloganinput"ref="loginname"/>
+           		<input ref="loginpassword" className="sloganinput"/>
+           		<button className="sloganbutton"  ref="login-button" type="submit">
            			Submit
            		</button>
            	</form>

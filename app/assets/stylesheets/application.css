@@ -1,47 +1,96 @@
-body{
-  background: #0083A3;
+body {
+    background-image: url("austinskylinebw.jpg");
+    color: white;
+    text-align: center;
 }
 
-h1 {
-  font-family: Cousine;
-  font-size: 48px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 500;
+/*USER PAGE*/
+.userpage ul {
+
+   list-style-type: none;
+   margin: 0 auto;
+   padding: 0;
+   overflow: hidden;
 }
+
+li {
+   float: left;
+}
+
+.spill {
+  background: yellow;
+  padding: 25px;
+  color: purple;
+  font-size: 25px;
+  text-align: left;
+}
+
+a:link, a:visited {
+   display: block;
+   width: 100%;
+   font-weight: bold;
+   color: #FFFFFF ;
+   background-color: #98bf21 ;
+   text-align: center;
+   padding: 10px;
+   text-decoration: none;
+   text-transform: uppercase;
+}
+
+a:hover, a:active {
+   background-color: #7A991A ;
+}
+
+h1{
+  font-size: 50px;
+  color: pink;
+}
+
 h3 {
-  font-family: Cousine;
-  font-size: 36px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 500;
+ font-size: 36px;
 }
-div{
-  font-size: 24px;
+
+h4 {
+ font-size: 24px;
 }
-p {
-  font-family: Cousine;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 20px;
+
+.userpage h1 {
+    text-align: center;
+    color: white;
 }
-blockquote {
-  font-family: Cousine;
-  font-size: 21px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 30px;
+
+.register {
+    color: white;
 }
-pre {
-  font-family: Cousine;
-  font-size: 13px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 18.5714302062988px;
+ul {
+    list-style: none;
+}
+
+.inputnewslogan {
+    padding:20px;
+    text-align: center;
+
+}
+.inputbox {
+    width:80%;
+}
+
+.title {
+text-shadow:1px 1px 9px rgba(97,239,255,0.5);
+font-weight:normal;
+color:#FAFAFA ;
+letter-spacing:1pt;
+word-spacing:2pt;
+font-size:36px;
+text-align:center;
+font-family:arial, helvetica, sans-serif;
+line-height:1;
+}
+.navbarshit {
+    width: 100%;
+}
+h1 {
+    text-align: center;
 }
 
 .like {
@@ -126,4 +175,61 @@ pre {
   top:1px;
 }
 
+.sloganclass{
+  margin-top: 25px;
+  font-size:35px;
+  background: purple;
+  color: white;
+  height: 75px;
+  padding: 25px;
+}
 
+.sloganbutton {-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+  box-shadow:inset 0px 1px 0px 0px #f5978e;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f61100), color-stop(1, #c62d1f));
+  background:-moz-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:-webkit-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:-o-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:-ms-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:linear-gradient(to bottom, #f61100 5%, #c62d1f 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f61100', endColorstr='#c62d1f',GradientType=0);
+  background-color:#f61100;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  margin-left:25px;
+  border-radius:6px;
+  border:1px solid #d02718;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #810e05;
+
+}
+
+.sloganbutton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f61100));
+  background:-moz-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:-webkit-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:-o-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:-ms-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:linear-gradient(to bottom, #c62d1f 5%, #f61100 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f61100',GradientType=0);
+  background-color:#c62d1f;
+}
+.sloganbutton:active {
+  position:relative;
+  top:1px;
+}
+
+.sloganinput {
+  background: pink;
+  font-size:36px;
+  color: black;
+
+}

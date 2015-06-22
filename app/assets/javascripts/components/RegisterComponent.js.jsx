@@ -2,13 +2,12 @@ var Register = React.createClass({
     render: function () {
         return (
           <div>     
-            <NavComponent/>
-            <MainTitle/>
+           <NavComponent/>
             <h1> Register </h1>
             <form onSubmit={this.addNewUser} ref="registerform" className="cosmo">
-              <input ref="registername"/>
-              <input ref="registerpassword"/>
-              <button ref="registerbutton" type="submit">
+              <input ref="registername" className="sloganinput"/>
+              <input ref="registerpassword" className="sloganinput"/>
+              <button ref="registerbutton" className="sloganbutton" type="submit">
                 Submit
               </button>
             </form> 
