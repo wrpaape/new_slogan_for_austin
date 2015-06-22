@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email]) unless user = User.find_by(name: params[:name])
+    user = User.find_by(name: params[:name])
     # If the user exists AND the password entered is correct.
     if user && user.authenticate(params[:password])
       # Save the user id inside a browser cookie.
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       # If user's login doesn't work, send them back to the login form.
       render_response({ response: "incorrect password" }, 422)
     else
-      render_response({ response: "username or email does not exist" }, 422)
+      render_response({ response: "username does not exist" }, 422)
     end
   end
 

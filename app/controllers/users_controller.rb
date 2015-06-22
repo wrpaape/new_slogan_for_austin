@@ -24,12 +24,8 @@ class UsersController < ApplicationController
 
   def create
     begin
-      if User.find_by(name: user_params[:name]) && User.find_by(email: user_params[:email])
-        render_response({ response: "username and email is already taken" }, 500)
-      elsif User.find_by(name: user_params[:name])
+      if User.find_by(name: user_params[:name])
         render_response({ response: "username is already taken" }, 500)
-      elsif User.find_by(email: user_params[:email])
-        render_response({ response: "email is already taken", 500)
       elsif user_params[:password] != user_params[:password_confirmation]
         render_response({ response: "passwords do not match" }, 500)
       else
@@ -74,7 +70,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :email, :password, :password_confirmation)
+    params.permit(:name, :password, :password_confirmation)
   end
 
   def render_response(response, response_code)
