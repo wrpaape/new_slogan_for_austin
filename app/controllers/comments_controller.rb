@@ -49,9 +49,9 @@ class CommentsController < ApplicationController
       return if authenticate_user!
       @comment = Comment.create({ slogan_id: comment_param[:slogan_id], body: comment_params[:body], user_id: current_user.id })
       if @comment.save
-        render_response(@comment, 500)
+        render_response(@comment, 200)
       else
-        render_response({ response: "error occurred" }, 500)
+        render_response({ response: "error occurred" }, 200)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
@@ -76,9 +76,9 @@ class CommentsController < ApplicationController
       return if authenticate_user!
       @comment = Comment.update({ slogan_id: comment_param[:slogan_id], body: comment_params[:body], user_id: current_user.id })
       if @comment.save
-        render_response(@comment, 500)
+        render_response(@comment, 200)
       else
-        render_response({ response: "error occurred" }, 500)
+        render_response({ response: "error occurred" }, 200)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)

@@ -1,6 +1,3 @@
-
-
-
 var UserModel = Backbone.Model.extend({
 	defaults: {
 

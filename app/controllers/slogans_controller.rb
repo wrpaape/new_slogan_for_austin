@@ -62,7 +62,7 @@ class SlogansController < ApplicationController
       if @slogan.save
         render_response(@slogan, 200)
       else
-        render_response({ response: "errors occurred" }, 500)
+        render_response({ response: "errors occurred" }, 200)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)
@@ -142,7 +142,7 @@ class SlogansController < ApplicationController
       if slogan.update({ body: slogan_params[:body], user_id: current_user.id })
         render_response(@slogan, 200)
       else
-        render_response({ response: "errors occurred"}, 500)
+        render_response({ response: "errors occurred"}, 200)
       end
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)

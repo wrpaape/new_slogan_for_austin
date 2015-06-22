@@ -1,4 +1,3 @@
-
 var LoggedInModel = Backbone.Model.extend({
 	defaults: {
 
