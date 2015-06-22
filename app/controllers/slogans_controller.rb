@@ -10,6 +10,17 @@ class SlogansController < ApplicationController
     end
   end
 
+  def most_recent
+    begin
+      @slogans = Slogan.order(updated_at: :desc)
+      render_response(@slogans, 200)
+      rescue ActiveRecord::RecordNotFound => error
+        render_response(error.message, 404)
+      rescue StandardError => error
+        render_response(error.message, 422)
+    end
+  end
+
   def most_liked
     begin
       @slogans = Slogan.order(likes: :desc)
@@ -74,7 +85,7 @@ class SlogansController < ApplicationController
   def show_w_comments
     begin
       @slogan = Slogan.find(params[:id])
-      @comments = @slogan.comments
+      @comments = @slogan.comments.reverse
       render_response([@slogan, @comments], 200)
       rescue ActiveRecord::RecordNotFound => error
         render_response(error.message, 404)

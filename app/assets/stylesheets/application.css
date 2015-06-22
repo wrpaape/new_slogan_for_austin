@@ -1,15 +1,129 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body{
+  background: #0083A3;
+}
+
+h1 {
+  font-family: Cousine;
+  font-size: 48px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+}
+h3 {
+  font-family: Cousine;
+  font-size: 36px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+}
+div{
+  font-size: 24px;
+}
+p {
+  font-family: Cousine;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+blockquote {
+  font-family: Cousine;
+  font-size: 21px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+pre {
+  font-family: Cousine;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 18.5714302062988px;
+}
+
+.like {
+  -moz-box-shadow:inset 0px 1px 0px 0px #21f735;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #21f735;
+  box-shadow:inset 0px 1px 0px 0px #21f735;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #00ff00), color-stop(1, #5fbf60));
+  background:-moz-linear-gradient(top, #00ff00 5%, #5fbf60 100%);
+  background:-webkit-linear-gradient(top, #00ff00 5%, #5fbf60 100%);
+  background:-o-linear-gradient(top, #00ff00 5%, #5fbf60 100%);
+  background:-ms-linear-gradient(top, #00ff00 5%, #5fbf60 100%);
+  background:linear-gradient(to bottom, #00ff00 5%, #5fbf60 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ff00', endColorstr='#5fbf60',GradientType=0);
+  background-color:#00ff00;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #1da33f;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #810e05;
+}
+.like:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5fbf60), color-stop(1, #00ff00));
+  background:-moz-linear-gradient(top, #5fbf60 5%, #00ff00 100%);
+  background:-webkit-linear-gradient(top, #5fbf60 5%, #00ff00 100%);
+  background:-o-linear-gradient(top, #5fbf60 5%, #00ff00 100%);
+  background:-ms-linear-gradient(top, #5fbf60 5%, #00ff00 100%);
+  background:linear-gradient(to bottom, #5fbf60 5%, #00ff00 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5fbf60', endColorstr='#00ff00',GradientType=0);
+  background-color:#5fbf60;
+}
+.like:active {
+  position:relative;
+  top:1px;
+}
+
+.hate {
+  -moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+  box-shadow:inset 0px 1px 0px 0px #f5978e;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f61100), color-stop(1, #c62d1f));
+  background:-moz-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:-webkit-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:-o-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:-ms-linear-gradient(top, #f61100 5%, #c62d1f 100%);
+  background:linear-gradient(to bottom, #f61100 5%, #c62d1f 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f61100', endColorstr='#c62d1f',GradientType=0);
+  background-color:#f61100;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #d02718;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #810e05;
+}
+.hate:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f61100));
+  background:-moz-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:-webkit-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:-o-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:-ms-linear-gradient(top, #c62d1f 5%, #f61100 100%);
+  background:linear-gradient(to bottom, #c62d1f 5%, #f61100 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f61100',GradientType=0);
+  background-color:#c62d1f;
+}
+.hate:active {
+  position:relative;
+  top:1px;
+}
+
+
