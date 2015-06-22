@@ -28,15 +28,11 @@ var Login = React.createClass({
        		var loginObject = {};
         	loginObject.name = React.findDOMNode(this.refs.loginname).value;
         	loginObject.password = React.findDOMNode(this.refs.loginpassword).value;
-        	// $.post('http://localhost:3000/login',loginObject,function(response){
-         //    console.log(response);
-        	//  	if(response=="successfully logged in"){app.navigate('home', {trigger: true});}
-        	//  	else{React.findDOMNode(this.refs.loginform).append("your name or password is wrong, or you need to register");}
-        	// });
+        	
           $.post(
             '/login',
             loginObject,
-            'html'
+            'json'
           )
           .success(function(result) {
               console.log(result);
@@ -44,7 +40,7 @@ var Login = React.createClass({
           })
           .error(function(error) {
             console.log(error);
-            $('.porkbelly').append('your password or name is incorrect or you need to register');
+            $('.porkbelly').append('<h1>your password or name is incorrect or you need to register</h1>');
           })
 
        	}

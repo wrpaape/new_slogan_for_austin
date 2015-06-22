@@ -1,5 +1,6 @@
 /* global Backbone React */
 var sloganlist = new SloganCollection();
+var userlist = new UserCollection();
 var App = Backbone.Router.extend({
     routes: {
         '': 'home',

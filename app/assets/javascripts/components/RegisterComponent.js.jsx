@@ -5,10 +5,10 @@ var Register = React.createClass({
             <NavComponent/>
             <MainTitle/>
             <h1> Register </h1>
-            <form ref="register-form">
-              <input ref="register-name"/>
-              <input ref="register-password"/>
-              <button onClick={this.addNewUser} ref="login-button" type="submit">
+            <form onSubmit={this.addNewUser} ref="registerform" className="cosmo">
+              <input ref="registername"/>
+              <input ref="registerpassword"/>
+              <button ref="registerbutton" type="submit">
                 Submit
               </button>
             </form> 
@@ -17,22 +17,51 @@ var Register = React.createClass({
     },
     addNewUser: function(e){
             e.preventDefault;
-            Reggie = new UserModel({
+            console.log(React.findDOMNode(this.refs.registername).value);
+            var Reggie={name: React.findDOMNode(this.refs.registername).value,
+              password: React.findDOMNode(this.refs.registerpassword).value,
+              password_confirmation: React.findDOMNode(this.refs.registerpassword).value};
 
-              name: $("input[ref='register-name']" ).val(),
-              password: $("input[ref='register-password']" ).val()
+              
 
-            });
-            $.post('http://localhost:3000/users', Reggie ,function(response){
-                if(response == "user successfully created"){
-                  UserCollection.add(Reggie);
-                  app.navigate('home', {trigger: true});
-                }
-                else {$("input[ref='register-form']").append('user name already in use');}
-            });
+            
+            $.post('/users',
+                   Reggie ,
+                   function(response){
+                      console.log(response);
+                      if(response.response == "user successfully created"){
+                        userlist.add(Reggie);
+                        app.navigate('home', {trigger: true});
+                      }
+                      else {$('.cosmo').append('<h2>user name already in use</h2>');}
+                   },
+                   'json'
+                   );
 
     }
 });
+// addNewUser: function(e){
+//           e.preventDefault;
+//           console.log(e);
+//           var loginObject = {};
+//           loginObject.name = React.findDOMNode(this.refs.loginname).value;
+//           loginObject.password = React.findDOMNode(this.refs.loginpassword).value;
+          
+//           $.post(
+//             '/login',
+//             loginObject,
+//             'json'
+//           )
+//           .success(function(result) {
+//               console.log(result);
+//               app.navigate('home', {trigger: true});
+//           })
+//           .error(function(error) {
+//             console.log(error);
+//             $('.porkbelly').append('<h1>your password or name is incorrect or you need to register</h1>');
+//           })
 
+//         }
+    
 
 
